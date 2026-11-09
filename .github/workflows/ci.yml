@@ -1,0 +1,107 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Full suite with every optional backend (scikit-learn, numba, PyTorch CPU).
+  test:
+    name: tests (py${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install PyTorch (CPU)
+        run: python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - name: Install chmm-lsim[dev]
+        run: python -m pip install -e ".[dev]"
+      - name: Run tests
+        run: python -m pytest -q
+
+  # `import chmm_lsim` must work with only NumPy and SciPy installed.
+  core-only:
+    name: core only (py${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install chmm-lsim (no extras) and pytest
+        run: python -m pip install -e "." "pytest>=8"
+      - name: Run tests (optional-backend tests skip)
+        run: python -m pytest -q
+      - name: Import contract without optional dependencies
+        run: |
+          python -c "
+          import sys
+          import chmm_lsim
+          for mod in ('torch', 'numba', 'sklearn'):
+              assert mod not in sys.modules, mod
+          try:
+              chmm_lsim.forward_backward_batch
+              raise SystemExit('forward_backward_batch should raise MissingBackendDependency without torch')
+          except chmm_lsim.MissingBackendDependency:
+              pass
+          print('core-only import contract OK')
+          "
+
+  # The sdist and wheel build, install cleanly and work.
+  packaging:
+    name: packaging
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build sdist and wheel
+        run: |
+          python -m pip install --upgrade pip build twine
+          python -m build
+          python -m twine check --strict dist/*
+      - name: Install the wheel in a clean environment and smoke-test it
+        run: |
+          python -m venv /tmp/env
+          /tmp/env/bin/python -m pip install dist/*.whl
+          cd /tmp && /tmp/env/bin/python -c "
+          import numpy as np
+          from chmm_lsim import ChannelGMM, FbConstants, LSIMParams, LSIMStructure, forward_backward, simulate_lsim
+          s = LSIMStructure(channel_state_num=(2, 3), channel_obs_dim=(1, 1), num_gmm_component=(1, 1))
+          rng = np.random.default_rng(0)
+          pi_0 = np.concatenate([rng.dirichlet(np.ones(m)) for m in s.channel_state_num])
+          A = np.zeros((s.S, s.S))
+          for c in range(s.C):
+              for z in range(s.C):
+                  A[s.state_slice(c), s.state_slice(z)] = rng.dirichlet(np.ones(s.channel_state_num[z]), s.channel_state_num[c])
+          theta = rng.dirichlet(np.ones(2), 2).T
+          em = [ChannelGMM(np.ones((m, 1)), np.arange(m, dtype=float).reshape(1, m, 1), np.ones((1, m, 1)), True) for m in s.channel_state_num]
+          p = LSIMParams(s, pi_0, A, theta, em)
+          Y, _ = simulate_lsim(s, p, T=50, seed=0)
+          for v in ('poise', 'sed', 'fast'):
+              assert np.isfinite(forward_backward(s, p, Y, FbConstants(variant=v)).loglik)
+          print('wheel smoke test OK')
+          "

@@ -1,0 +1,2606 @@
+{
+  "schema_version": "1.6.0",
+  "generated_date": "2026-08-06",
+  "matlab_release": "26.1.0.3203278 (R2026a)",
+  "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+  "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+  "scenarios": [
+    {
+      "scenario_id": "c1_minimal",
+      "axes_covered": [
+        "C=1",
+        "M=homog2",
+        "d=all1",
+        "K=1",
+        "covariance=diag",
+        "NaN=none",
+        "coupling=dense",
+        "transitions=dense",
+        "T=3",
+        "trials=1",
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 1,
+      "S": 2,
+      "D": 1,
+      "channel_num_states": [
+        2
+      ],
+      "dim_observation": [
+        1
+      ],
+      "num_gmm_component": [
+        1
+      ],
+      "sigma_diag": true,
+      "num_trials": 1,
+      "length_observation": [
+        3
+      ],
+      "seed": 101,
+      "notes": "c1_minimal: smallest legal model: C=1, M=2, d=1, K=1, T=3, no NaN",
+      "files": {
+        "sed": {
+          "path": "c1_minimal__sed.npz",
+          "fb_constants": {
+            "variant": "sed",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "fast": {
+          "path": "c1_minimal__fast.npz",
+          "fb_constants": {
+            "variant": "fast",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "poise": {
+          "path": "c1_minimal__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c1_minimal__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    },
+    {
+      "scenario_id": "c1_T1",
+      "axes_covered": [
+        "C=1",
+        "T=1",
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 1,
+      "S": 2,
+      "D": 1,
+      "channel_num_states": [
+        2
+      ],
+      "dim_observation": [
+        1
+      ],
+      "num_gmm_component": [
+        1
+      ],
+      "sigma_diag": true,
+      "num_trials": 1,
+      "length_observation": [
+        1
+      ],
+      "seed": 102,
+      "notes": "c1_T1: T=1: the backward loop body never executes",
+      "files": {
+        "sed": {
+          "path": "c1_T1__sed.npz",
+          "fb_constants": {
+            "variant": "sed",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "fast": {
+          "path": "c1_T1__fast.npz",
+          "fb_constants": {
+            "variant": "fast",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "poise": {
+          "path": "c1_T1__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c1_T1__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    },
+    {
+      "scenario_id": "c2_diag_d1",
+      "axes_covered": [
+        "C=2",
+        "M=homog2",
+        "d=all1",
+        "K=1",
+        "covariance=diag",
+        "NaN=none",
+        "T=2",
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 2,
+      "S": 4,
+      "D": 2,
+      "channel_num_states": [
+        2,
+        2
+      ],
+      "dim_observation": [
+        1,
+        1
+      ],
+      "num_gmm_component": [
+        1,
+        1
+      ],
+      "sigma_diag": true,
+      "num_trials": 1,
+      "length_observation": [
+        2
+      ],
+      "seed": 103,
+      "notes": "c2_diag_d1: C=2, all d_c=1 (gmm_pdf_fast scalar-D branch), T=2",
+      "files": {
+        "sed": {
+          "path": "c2_diag_d1__sed.npz",
+          "fb_constants": {
+            "variant": "sed",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "fast": {
+          "path": "c2_diag_d1__fast.npz",
+          "fb_constants": {
+            "variant": "fast",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "poise": {
+          "path": "c2_diag_d1__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c2_diag_d1__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    },
+    {
+      "scenario_id": "c2_diag_d1_nan",
+      "axes_covered": [
+        "C=2",
+        "d=all1",
+        "NaN=scattered",
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 2,
+      "S": 4,
+      "D": 2,
+      "channel_num_states": [
+        2,
+        2
+      ],
+      "dim_observation": [
+        1,
+        1
+      ],
+      "num_gmm_component": [
+        1,
+        1
+      ],
+      "sigma_diag": true,
+      "num_trials": 1,
+      "length_observation": [
+        25
+      ],
+      "seed": 104,
+      "notes": "c2_diag_d1_nan: all d_c=1 with scattered NaN: the only way to hit the historical section-0.4.9 gmm_pdf_fast bug (now fixed in P0b)",
+      "files": {
+        "sed": {
+          "path": "c2_diag_d1_nan__sed.npz",
+          "fb_constants": {
+            "variant": "sed",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "fast": {
+          "path": "c2_diag_d1_nan__fast.npz",
+          "fb_constants": {
+            "variant": "fast",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "poise": {
+          "path": "c2_diag_d1_nan__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c2_diag_d1_nan__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    },
+    {
+      "scenario_id": "c3_het_diag",
+      "axes_covered": [
+        "C=3",
+        "M=heterog",
+        "d=mixed",
+        "K=mixed",
+        "covariance=diag",
+        "NaN=scattered",
+        "coupling=dense",
+        "transitions=dense",
+        "T=40",
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 3,
+      "S": 7,
+      "D": 6,
+      "channel_num_states": [
+        2,
+        3,
+        2
+      ],
+      "dim_observation": [
+        1,
+        3,
+        2
+      ],
+      "num_gmm_component": [
+        2,
+        1,
+        3
+      ],
+      "sigma_diag": true,
+      "num_trials": 1,
+      "length_observation": [
+        40
+      ],
+      "seed": 105,
+      "notes": "c3_het_diag: heterogeneous C=3 baseline, diag covariance; also the dense contrast for SED diagnostics",
+      "files": {
+        "sed": {
+          "path": "c3_het_diag__sed.npz",
+          "fb_constants": {
+            "variant": "sed",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": true,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "fast": {
+          "path": "c3_het_diag__fast.npz",
+          "fb_constants": {
+            "variant": "fast",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "poise": {
+          "path": "c3_het_diag__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c3_het_diag__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    },
+    {
+      "scenario_id": "c3_het_full",
+      "axes_covered": [
+        "d=all3",
+        "covariance=full",
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 3,
+      "S": 7,
+      "D": 9,
+      "channel_num_states": [
+        2,
+        3,
+        2
+      ],
+      "dim_observation": [
+        3,
+        3,
+        3
+      ],
+      "num_gmm_component": [
+        2,
+        1,
+        3
+      ],
+      "sigma_diag": false,
+      "num_trials": 1,
+      "length_observation": [
+        45
+      ],
+      "seed": 106,
+      "notes": "c3_het_full: heterogeneous C=3, all d_c=3, full covariance, no NaN",
+      "files": {
+        "sed": {
+          "path": "c3_het_full__sed.npz",
+          "fb_constants": {
+            "variant": "sed",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "fast": {
+          "path": "c3_het_full__fast.npz",
+          "fb_constants": {
+            "variant": "fast",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "poise": {
+          "path": "c3_het_full__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c3_het_full__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    },
+    {
+      "scenario_id": "c3_het_full_nan",
+      "axes_covered": [
+        "covariance=full",
+        "NaN=scattered",
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 3,
+      "S": 7,
+      "D": 9,
+      "channel_num_states": [
+        2,
+        3,
+        2
+      ],
+      "dim_observation": [
+        3,
+        3,
+        3
+      ],
+      "num_gmm_component": [
+        2,
+        1,
+        3
+      ],
+      "sigma_diag": false,
+      "num_trials": 1,
+      "length_observation": [
+        45
+      ],
+      "seed": 107,
+      "notes": "c3_het_full_nan: full covariance with scattered NaN plus one fully-missing timestep in one channel (exercises the section-3bis.2 gmm_pdf.m fix)",
+      "files": {
+        "sed": {
+          "path": "c3_het_full_nan__sed.npz",
+          "fb_constants": {
+            "variant": "sed",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "fast": {
+          "path": "c3_het_full_nan__fast.npz",
+          "fb_constants": {
+            "variant": "fast",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "poise": {
+          "path": "c3_het_full_nan__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c3_het_full_nan__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    },
+    {
+      "scenario_id": "c3_nan_timestep",
+      "axes_covered": [
+        "M=homog2",
+        "NaN=whole-timestep-one-channel",
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 3,
+      "S": 6,
+      "D": 6,
+      "channel_num_states": [
+        2,
+        2,
+        2
+      ],
+      "dim_observation": [
+        2,
+        2,
+        2
+      ],
+      "num_gmm_component": [
+        1,
+        1,
+        1
+      ],
+      "sigma_diag": true,
+      "num_trials": 1,
+      "length_observation": [
+        35
+      ],
+      "seed": 108,
+      "notes": "c3_nan_timestep: one whole timestep missing in exactly one channel (others observed at that t)",
+      "files": {
+        "sed": {
+          "path": "c3_nan_timestep__sed.npz",
+          "fb_constants": {
+            "variant": "sed",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "fast": {
+          "path": "c3_nan_timestep__fast.npz",
+          "fb_constants": {
+            "variant": "fast",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "poise": {
+          "path": "c3_nan_timestep__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c3_nan_timestep__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    },
+    {
+      "scenario_id": "c3_channel_all_nan",
+      "axes_covered": [
+        "NaN=channel-fully-missing",
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 3,
+      "S": 6,
+      "D": 6,
+      "channel_num_states": [
+        2,
+        2,
+        2
+      ],
+      "dim_observation": [
+        2,
+        2,
+        2
+      ],
+      "num_gmm_component": [
+        1,
+        1,
+        1
+      ],
+      "sigma_diag": true,
+      "num_trials": 1,
+      "length_observation": [
+        35
+      ],
+      "seed": 109,
+      "notes": "c3_channel_all_nan: one entire channel is NaN for every t: that channel's likelihood factor must equal 1 throughout",
+      "files": {
+        "sed": {
+          "path": "c3_channel_all_nan__sed.npz",
+          "fb_constants": {
+            "variant": "sed",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "fast": {
+          "path": "c3_channel_all_nan__fast.npz",
+          "fb_constants": {
+            "variant": "fast",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "poise": {
+          "path": "c3_channel_all_nan__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c3_channel_all_nan__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    },
+    {
+      "scenario_id": "c3_sparse_l2r",
+      "axes_covered": [
+        "transitions=sparse-l2r",
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 3,
+      "S": 9,
+      "D": 3,
+      "channel_num_states": [
+        3,
+        3,
+        3
+      ],
+      "dim_observation": [
+        1,
+        1,
+        1
+      ],
+      "num_gmm_component": [
+        1,
+        1,
+        1
+      ],
+      "sigma_diag": true,
+      "num_trials": 1,
+      "length_observation": [
+        30
+      ],
+      "seed": 110,
+      "notes": "c3_sparse_l2r: decoupled (theta=I), strictly left-to-right transitions, pi0 one-hot at state 1: state 3 of every channel has alpha==0 at t=2 unless pi0_reg is disabled. Requires pi0_reg=0 (recorded per-file, both variants) to actually reach the exact-zero path -- section-0.3.3(4). Exercises the P0b safe-division fix.",
+      "files": {
+        "sed": {
+          "path": "c3_sparse_l2r__sed.npz",
+          "fb_constants": {
+            "variant": "sed",
+            "beta_floor": 1e-09,
+            "pi0_reg": 0,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": true,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "fast": {
+          "path": "c3_sparse_l2r__fast.npz",
+          "fb_constants": {
+            "variant": "fast",
+            "beta_floor": 1e-09,
+            "pi0_reg": 0,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "poise": {
+          "path": "c3_sparse_l2r__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 0,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c3_sparse_l2r__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 0,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    },
+    {
+      "scenario_id": "c3_coupling_degenerate",
+      "axes_covered": [
+        "coupling=near-degenerate-column",
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 3,
+      "S": 7,
+      "D": 6,
+      "channel_num_states": [
+        2,
+        3,
+        2
+      ],
+      "dim_observation": [
+        1,
+        3,
+        2
+      ],
+      "num_gmm_component": [
+        2,
+        1,
+        3
+      ],
+      "sigma_diag": true,
+      "num_trials": 1,
+      "length_observation": [
+        40
+      ],
+      "seed": 111,
+      "notes": "c3_coupling_degenerate: coupling strongly diagonal-dominant (0.999 self / 0.0005 cross per column): near-decoupled regime, section-0.3.3(3)",
+      "files": {
+        "sed": {
+          "path": "c3_coupling_degenerate__sed.npz",
+          "fb_constants": {
+            "variant": "sed",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "fast": {
+          "path": "c3_coupling_degenerate__fast.npz",
+          "fb_constants": {
+            "variant": "fast",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "poise": {
+          "path": "c3_coupling_degenerate__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c3_coupling_degenerate__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    },
+    {
+      "scenario_id": "c3_coupling_zero_row",
+      "axes_covered": [
+        "coupling=sparse-row",
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 3,
+      "S": 7,
+      "D": 6,
+      "channel_num_states": [
+        2,
+        3,
+        2
+      ],
+      "dim_observation": [
+        1,
+        3,
+        2
+      ],
+      "num_gmm_component": [
+        2,
+        1,
+        3
+      ],
+      "sigma_diag": true,
+      "num_trials": 1,
+      "length_observation": [
+        40
+      ],
+      "seed": 112,
+      "notes": "c3_coupling_zero_row: coupling row 1 near-zero (sum <= 1e-10): triggers flag_nan and the beta(isnan)=b guard",
+      "files": {
+        "sed": {
+          "path": "c3_coupling_zero_row__sed.npz",
+          "fb_constants": {
+            "variant": "sed",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "fast": {
+          "path": "c3_coupling_zero_row__fast.npz",
+          "fb_constants": {
+            "variant": "fast",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "poise": {
+          "path": "c3_coupling_zero_row__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c3_coupling_zero_row__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    },
+    {
+      "scenario_id": "c3_lowmass_diag",
+      "axes_covered": [
+        "low-mass",
+        "covariance=diag",
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 3,
+      "S": 7,
+      "D": 6,
+      "channel_num_states": [
+        2,
+        3,
+        2
+      ],
+      "dim_observation": [
+        1,
+        3,
+        2
+      ],
+      "num_gmm_component": [
+        2,
+        1,
+        3
+      ],
+      "sigma_diag": true,
+      "num_trials": 1,
+      "length_observation": [
+        60
+      ],
+      "seed": 113,
+      "notes": "c3_lowmass_diag: one (state,component) has near-zero posterior responsibility throughout (diag covariance). The MATLAB weight+1 fallback this axis originally targeted is em_lsim M-step-only and is covered by the future EM-trace/M-step fixtures (P4), not here; this fixture instead tests the forward-backward kernel's numerical behaviour with a near-zero-mass state as input.",
+      "files": {
+        "sed": {
+          "path": "c3_lowmass_diag__sed.npz",
+          "fb_constants": {
+            "variant": "sed",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "fast": {
+          "path": "c3_lowmass_diag__fast.npz",
+          "fb_constants": {
+            "variant": "fast",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "poise": {
+          "path": "c3_lowmass_diag__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c3_lowmass_diag__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    },
+    {
+      "scenario_id": "c3_lowmass_full",
+      "axes_covered": [
+        "low-mass",
+        "covariance=full",
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 3,
+      "S": 7,
+      "D": 6,
+      "channel_num_states": [
+        2,
+        3,
+        2
+      ],
+      "dim_observation": [
+        2,
+        2,
+        2
+      ],
+      "num_gmm_component": [
+        2,
+        1,
+        3
+      ],
+      "sigma_diag": false,
+      "num_trials": 1,
+      "length_observation": [
+        60
+      ],
+      "seed": 114,
+      "notes": "c3_lowmass_full: same as c3_lowmass_diag but full covariance",
+      "files": {
+        "sed": {
+          "path": "c3_lowmass_full__sed.npz",
+          "fb_constants": {
+            "variant": "sed",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "fast": {
+          "path": "c3_lowmass_full__fast.npz",
+          "fb_constants": {
+            "variant": "fast",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "poise": {
+          "path": "c3_lowmass_full__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c3_lowmass_full__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    },
+    {
+      "scenario_id": "c3_sigma_repair_1eig",
+      "axes_covered": [
+        "sigma-near-singular",
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 3,
+      "S": 7,
+      "D": 6,
+      "channel_num_states": [
+        2,
+        3,
+        2
+      ],
+      "dim_observation": [
+        2,
+        2,
+        2
+      ],
+      "num_gmm_component": [
+        1,
+        1,
+        1
+      ],
+      "sigma_diag": false,
+      "num_trials": 1,
+      "length_observation": [
+        40
+      ],
+      "seed": 115,
+      "notes": "c3_sigma_repair_1eig: one state's full covariance is near-singular (smallest eigenvalue ~1e-8, still PD -- mvnpdf errors on a genuinely indefinite input, so the exact eig<=0 M-step repair threshold of section-0.4.10 cannot be reproduced as a forward-backward INPUT and is deferred to P4). Tests gmm_pdf numerical robustness near singularity.",
+      "files": {
+        "sed": {
+          "path": "c3_sigma_repair_1eig__sed.npz",
+          "fb_constants": {
+            "variant": "sed",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "fast": {
+          "path": "c3_sigma_repair_1eig__fast.npz",
+          "fb_constants": {
+            "variant": "fast",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "poise": {
+          "path": "c3_sigma_repair_1eig__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c3_sigma_repair_1eig__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    },
+    {
+      "scenario_id": "c3_sigma_repair_2eig",
+      "axes_covered": [
+        "sigma-near-singular",
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 3,
+      "S": 7,
+      "D": 9,
+      "channel_num_states": [
+        2,
+        3,
+        2
+      ],
+      "dim_observation": [
+        3,
+        3,
+        3
+      ],
+      "num_gmm_component": [
+        1,
+        1,
+        1
+      ],
+      "sigma_diag": false,
+      "num_trials": 1,
+      "length_observation": [
+        40
+      ],
+      "seed": 116,
+      "notes": "c3_sigma_repair_2eig: as c3_sigma_repair_1eig, but two of the three eigenvalues of one state's covariance are tiny",
+      "files": {
+        "sed": {
+          "path": "c3_sigma_repair_2eig__sed.npz",
+          "fb_constants": {
+            "variant": "sed",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "fast": {
+          "path": "c3_sigma_repair_2eig__fast.npz",
+          "fb_constants": {
+            "variant": "fast",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "poise": {
+          "path": "c3_sigma_repair_2eig__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c3_sigma_repair_2eig__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    },
+    {
+      "scenario_id": "c5_dense_diag",
+      "axes_covered": [
+        "C=5",
+        "T=50",
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 5,
+      "S": 15,
+      "D": 10,
+      "channel_num_states": [
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "dim_observation": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "num_gmm_component": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "sigma_diag": true,
+      "num_trials": 1,
+      "length_observation": [
+        50
+      ],
+      "seed": 117,
+      "notes": "c5_dense_diag: C=5, homogeneous shapes, T=50, dense coupling and transitions",
+      "files": {
+        "sed": {
+          "path": "c5_dense_diag__sed.npz",
+          "fb_constants": {
+            "variant": "sed",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "fast": {
+          "path": "c5_dense_diag__fast.npz",
+          "fb_constants": {
+            "variant": "fast",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "poise": {
+          "path": "c5_dense_diag__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c5_dense_diag__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    },
+    {
+      "scenario_id": "c5_mixed_d",
+      "axes_covered": [
+        "M=heterog",
+        "d=mixed",
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 5,
+      "S": 17,
+      "D": 13,
+      "channel_num_states": [
+        2,
+        4,
+        3,
+        6,
+        2
+      ],
+      "dim_observation": [
+        1,
+        2,
+        5,
+        3,
+        2
+      ],
+      "num_gmm_component": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "sigma_diag": true,
+      "num_trials": 1,
+      "length_observation": [
+        45
+      ],
+      "seed": 118,
+      "notes": "c5_mixed_d: C=5, heterogeneous M_c in 2..6, mixed d_c including 1, 2 and 5",
+      "files": {
+        "sed": {
+          "path": "c5_mixed_d__sed.npz",
+          "fb_constants": {
+            "variant": "sed",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "fast": {
+          "path": "c5_mixed_d__fast.npz",
+          "fb_constants": {
+            "variant": "fast",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "poise": {
+          "path": "c5_mixed_d__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c5_mixed_d__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    },
+    {
+      "scenario_id": "c5_K_mixed",
+      "axes_covered": [
+        "K=mixed",
+        "K=2",
+        "K=3",
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 5,
+      "S": 12,
+      "D": 5,
+      "channel_num_states": [
+        2,
+        2,
+        3,
+        2,
+        3
+      ],
+      "dim_observation": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "num_gmm_component": [
+        1,
+        2,
+        3,
+        2,
+        1
+      ],
+      "sigma_diag": true,
+      "num_trials": 1,
+      "length_observation": [
+        45
+      ],
+      "seed": 119,
+      "notes": "c5_K_mixed: C=5, mixed num_gmm_component including 1, 2 and 3",
+      "files": {
+        "sed": {
+          "path": "c5_K_mixed__sed.npz",
+          "fb_constants": {
+            "variant": "sed",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "fast": {
+          "path": "c5_K_mixed__fast.npz",
+          "fb_constants": {
+            "variant": "fast",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "poise": {
+          "path": "c5_K_mixed__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c5_K_mixed__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    },
+    {
+      "scenario_id": "c3_T500_diag",
+      "axes_covered": [
+        "T=500",
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 3,
+      "S": 6,
+      "D": 3,
+      "channel_num_states": [
+        2,
+        2,
+        2
+      ],
+      "dim_observation": [
+        1,
+        1,
+        1
+      ],
+      "num_gmm_component": [
+        1,
+        1,
+        1
+      ],
+      "sigma_diag": true,
+      "num_trials": 1,
+      "length_observation": [
+        500
+      ],
+      "seed": 120,
+      "notes": "c3_T500_diag: long sequence, T=500, to check the recursion stays numerically flat rather than compounding",
+      "files": {
+        "sed": {
+          "path": "c3_T500_diag__sed.npz",
+          "fb_constants": {
+            "variant": "sed",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "fast": {
+          "path": "c3_T500_diag__fast.npz",
+          "fb_constants": {
+            "variant": "fast",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "poise": {
+          "path": "c3_T500_diag__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c3_T500_diag__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    },
+    {
+      "scenario_id": "c3_trials_unequal",
+      "axes_covered": [
+        "trials=3-unequal",
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 3,
+      "S": 7,
+      "D": 6,
+      "channel_num_states": [
+        2,
+        3,
+        2
+      ],
+      "dim_observation": [
+        1,
+        3,
+        2
+      ],
+      "num_gmm_component": [
+        2,
+        1,
+        3
+      ],
+      "sigma_diag": true,
+      "num_trials": 3,
+      "length_observation": [
+        20,
+        35,
+        50
+      ],
+      "seed": 121,
+      "notes": "c3_trials_unequal: 3 trials of unequal length (T=20,35,50), same model, independent forward-backward calls. The em_lsim-specific multi-trial bookkeeping (trail_time_index, L_T_1, gamma_P0 averaging) has no forward-backward analogue and is exercised separately by the EM-trace fixture (P4).",
+      "files": {
+        "sed": {
+          "path": "c3_trials_unequal__sed.npz",
+          "fb_constants": {
+            "variant": "sed",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "fast": {
+          "path": "c3_trials_unequal__fast.npz",
+          "fb_constants": {
+            "variant": "fast",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "poise": {
+          "path": "c3_trials_unequal__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c3_trials_unequal__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    },
+    {
+      "scenario_id": "c3_fast_diag",
+      "axes_covered": [
+        "variant=fast",
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 3,
+      "S": 7,
+      "D": 6,
+      "channel_num_states": [
+        2,
+        3,
+        2
+      ],
+      "dim_observation": [
+        1,
+        3,
+        2
+      ],
+      "num_gmm_component": [
+        2,
+        1,
+        3
+      ],
+      "sigma_diag": true,
+      "num_trials": 1,
+      "length_observation": [
+        40
+      ],
+      "seed": 122,
+      "notes": "c3_fast_diag: diag covariance; documented primarily as a fast-variant fixture (svi_eps guard, w_opt exponent), also exported under sed",
+      "files": {
+        "sed": {
+          "path": "c3_fast_diag__sed.npz",
+          "fb_constants": {
+            "variant": "sed",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "fast": {
+          "path": "c3_fast_diag__fast.npz",
+          "fb_constants": {
+            "variant": "fast",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "poise": {
+          "path": "c3_fast_diag__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c3_fast_diag__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    },
+    {
+      "scenario_id": "c3_fast_full",
+      "axes_covered": [
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 3,
+      "S": 7,
+      "D": 9,
+      "channel_num_states": [
+        2,
+        3,
+        2
+      ],
+      "dim_observation": [
+        3,
+        3,
+        3
+      ],
+      "num_gmm_component": [
+        2,
+        1,
+        3
+      ],
+      "sigma_diag": false,
+      "num_trials": 1,
+      "length_observation": [
+        40
+      ],
+      "seed": 123,
+      "notes": "c3_fast_full: full covariance; documented primarily as a fast-variant fixture, also exported under sed",
+      "files": {
+        "sed": {
+          "path": "c3_fast_full__sed.npz",
+          "fb_constants": {
+            "variant": "sed",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "fast": {
+          "path": "c3_fast_full__fast.npz",
+          "fb_constants": {
+            "variant": "fast",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "poise": {
+          "path": "c3_fast_full__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c3_fast_full__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    },
+    {
+      "scenario_id": "c3_fast_nan",
+      "axes_covered": [
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 3,
+      "S": 7,
+      "D": 6,
+      "channel_num_states": [
+        2,
+        3,
+        2
+      ],
+      "dim_observation": [
+        1,
+        3,
+        2
+      ],
+      "num_gmm_component": [
+        2,
+        1,
+        3
+      ],
+      "sigma_diag": true,
+      "num_trials": 1,
+      "length_observation": [
+        40
+      ],
+      "seed": 124,
+      "notes": "c3_fast_nan: scattered NaN; documented primarily as a fast-variant fixture -- fast's NaN guard is unconditional (no flag_nan gate), unlike sed's, also exported under sed",
+      "files": {
+        "sed": {
+          "path": "c3_fast_nan__sed.npz",
+          "fb_constants": {
+            "variant": "sed",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "fast": {
+          "path": "c3_fast_nan__fast.npz",
+          "fb_constants": {
+            "variant": "fast",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "26.1.0.3203278 (R2026a)",
+          "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+          "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+          "generated_date": "2026-08-06"
+        },
+        "poise": {
+          "path": "c3_fast_nan__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c3_fast_nan__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    },
+    {
+      "scenario_id": "c3_coupling_zero_row_exact",
+      "axes_covered": [
+        "coupling=sparse-row",
+        "variant=sed",
+        "variant=fast"
+      ],
+      "C": 3,
+      "S": 7,
+      "D": 6,
+      "channel_num_states": [
+        2,
+        3,
+        2
+      ],
+      "dim_observation": [
+        1,
+        3,
+        2
+      ],
+      "num_gmm_component": [
+        2,
+        1,
+        3
+      ],
+      "sigma_diag": true,
+      "num_trials": 1,
+      "length_observation": [
+        40
+      ],
+      "seed": 125,
+      "notes": "c3_coupling_zero_row_exact: coupling row 1 EXACTLY zero (sum(theta(1,:)) == 0): POISE's theta_out == 0 branch, where the backward message is the bare observation term. P12 addition, exported for the poise variants only -- c3_coupling_zero_row's 1e-12 row only approaches this.",
+      "files": {
+        "poise": {
+          "path": "c3_coupling_zero_row_exact__poise.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": false
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        },
+        "poise_refined": {
+          "path": "c3_coupling_zero_row_exact__poise_refined.npz",
+          "fb_constants": {
+            "variant": "poise",
+            "beta_floor": 1e-09,
+            "pi0_reg": 1e-10,
+            "f_reg": 1e-06,
+            "svi_eps": 1e-08,
+            "poise_refinement": true
+          },
+          "has_sed_diagnostics": false,
+          "matlab_release": "25.2.0.2998904 (R2025b)",
+          "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+          "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+          "generated_date": "2026-09-28"
+        }
+      }
+    }
+  ],
+  "em_traces": [
+    {
+      "scenario_id": "c3_het_diag",
+      "path": "em_trace__c3_het_diag.npz",
+      "num_iters": 4,
+      "C": 3,
+      "seed": 105,
+      "matlab_release": "26.1.0.3203278 (R2026a)",
+      "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+      "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+      "generated_date": "2026-08-06"
+    },
+    {
+      "scenario_id": "c3_het_full",
+      "path": "em_trace__c3_het_full.npz",
+      "num_iters": 1,
+      "C": 3,
+      "seed": 106,
+      "matlab_release": "26.1.0.3203278 (R2026a)",
+      "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+      "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+      "generated_date": "2026-08-06"
+    },
+    {
+      "scenario_id": "c3_het_full_nan",
+      "path": "em_trace__c3_het_full_nan.npz",
+      "num_iters": 1,
+      "C": 3,
+      "seed": 107,
+      "matlab_release": "26.1.0.3203278 (R2026a)",
+      "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+      "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+      "generated_date": "2026-08-06"
+    },
+    {
+      "scenario_id": "c3_lowmass_diag",
+      "path": "em_trace__c3_lowmass_diag.npz",
+      "num_iters": 1,
+      "C": 3,
+      "seed": 113,
+      "matlab_release": "26.1.0.3203278 (R2026a)",
+      "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+      "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+      "generated_date": "2026-08-06"
+    },
+    {
+      "scenario_id": "c3_trials_unequal",
+      "path": "em_trace__c3_trials_unequal.npz",
+      "num_iters": 1,
+      "C": 3,
+      "seed": 121,
+      "matlab_release": "26.1.0.3203278 (R2026a)",
+      "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+      "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+      "generated_date": "2026-08-06"
+    },
+    {
+      "scenario_id": "c3_lowmass_full",
+      "path": "em_trace__c3_lowmass_full.npz",
+      "num_iters": 1,
+      "C": 3,
+      "seed": 114,
+      "matlab_release": "26.1.0.3203278 (R2026a)",
+      "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+      "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+      "generated_date": "2026-08-06"
+    },
+    {
+      "scenario_id": "c3_fallback_differs",
+      "path": "em_trace__c3_fallback_differs.npz",
+      "num_iters": 1,
+      "C": 1,
+      "seed": 0,
+      "matlab_release": "26.1.0.3203278 (R2026a)",
+      "kernel_sha256": "66254ca0a502904694c543213393356348ee5d8e9e09b4b3559cc46146a5ab09",
+      "constants_sha256": "d01658041d501a8e09207993ef9dfce71c511cb80ebc2085806d506434d3d248",
+      "generated_date": "2026-08-06"
+    },
+    {
+      "scenario_id": "c3_het_diag__poise",
+      "path": "em_trace__c3_het_diag__poise.npz",
+      "num_iters": 4,
+      "C": 3,
+      "seed": 105,
+      "matlab_release": "25.2.0.2998904 (R2025b)",
+      "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+      "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+      "generated_date": "2026-09-28"
+    },
+    {
+      "scenario_id": "c3_het_full__poise",
+      "path": "em_trace__c3_het_full__poise.npz",
+      "num_iters": 1,
+      "C": 3,
+      "seed": 106,
+      "matlab_release": "25.2.0.2998904 (R2025b)",
+      "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+      "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+      "generated_date": "2026-09-28"
+    },
+    {
+      "scenario_id": "c3_trials_unequal__poise",
+      "path": "em_trace__c3_trials_unequal__poise.npz",
+      "num_iters": 1,
+      "C": 3,
+      "seed": 121,
+      "matlab_release": "25.2.0.2998904 (R2025b)",
+      "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+      "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+      "generated_date": "2026-09-28"
+    },
+    {
+      "scenario_id": "c3_coupling_zero_row__poise",
+      "path": "em_trace__c3_coupling_zero_row__poise.npz",
+      "num_iters": 1,
+      "C": 3,
+      "seed": 112,
+      "matlab_release": "25.2.0.2998904 (R2025b)",
+      "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+      "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+      "generated_date": "2026-09-28"
+    },
+    {
+      "scenario_id": "c3_het_diag__poise_refined",
+      "path": "em_trace__c3_het_diag__poise_refined.npz",
+      "num_iters": 4,
+      "C": 3,
+      "seed": 105,
+      "matlab_release": "25.2.0.2998904 (R2025b)",
+      "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+      "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+      "generated_date": "2026-09-28"
+    },
+    {
+      "scenario_id": "c3_het_full__poise_refined",
+      "path": "em_trace__c3_het_full__poise_refined.npz",
+      "num_iters": 1,
+      "C": 3,
+      "seed": 106,
+      "matlab_release": "25.2.0.2998904 (R2025b)",
+      "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+      "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+      "generated_date": "2026-09-28"
+    },
+    {
+      "scenario_id": "c3_trials_unequal__poise_refined",
+      "path": "em_trace__c3_trials_unequal__poise_refined.npz",
+      "num_iters": 1,
+      "C": 3,
+      "seed": 121,
+      "matlab_release": "25.2.0.2998904 (R2025b)",
+      "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+      "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+      "generated_date": "2026-09-28"
+    },
+    {
+      "scenario_id": "c3_coupling_zero_row__poise_refined",
+      "path": "em_trace__c3_coupling_zero_row__poise_refined.npz",
+      "num_iters": 1,
+      "C": 3,
+      "seed": 112,
+      "matlab_release": "25.2.0.2998904 (R2025b)",
+      "kernel_sha256": "a96b20452237bb44877cd285a2bc6374877b8e2a1a32e07911b37096acbdc1ae",
+      "constants_sha256": "8540e9da073fb8473981f4b297f436399e5f5034cfb3065db49f833b80b39e63",
+      "generated_date": "2026-09-28"
+    }
+  ]
+}

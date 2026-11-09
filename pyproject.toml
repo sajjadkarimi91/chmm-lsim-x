@@ -1,0 +1,67 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "chmm-lsim"
+dynamic = ["version"]
+description = "Inference and learning for coupled hidden Markov models and Latent Structure Influence Models (LSIMs): POISE, SED and SVI forward-backward, EM, and discriminative (MMI) training"
+readme = "README.md"
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [{ name = "Sajjad Karimi" }]
+keywords = [
+    "hidden-markov-model", "coupled-hmm", "chmm", "lsim", "influence-model",
+    "forward-backward", "em-algorithm", "time-series", "multichannel",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = [
+    "numpy>=1.26",
+    "scipy>=1.11",
+]
+
+[project.optional-dependencies]
+# parameter initialization (initialize_lsim_params)
+init = ["scikit-learn>=1.3", "threadpoolctl>=3"]
+# numba CPU backend (backend="numba")
+numba = ["numba>=0.60"]
+# PyTorch CPU/CUDA backend (backend="torch", forward_backward_batch)
+torch = ["torch>=2.4"]
+all = ["chmm-lsim[init,numba,torch]"]
+dev = ["chmm-lsim[all]", "pytest>=8"]
+
+[project.urls]
+Homepage = "https://github.com/sajjadkarimi91/chmm-lsim-x"
+Repository = "https://github.com/sajjadkarimi91/chmm-lsim-x"
+Issues = "https://github.com/sajjadkarimi91/chmm-lsim-x/issues"
+
+[tool.hatch.version]
+path = "src/chmm_lsim/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/chmm_lsim"]
+
+[tool.hatch.build.targets.sdist]
+# Allowlist: the repository also holds the MATLAB toolbox, tests with binary
+# parity fixtures and benchmarks, none of which belong in the Python package.
+include = [
+    "/src/chmm_lsim/**",
+    "/pyproject.toml",
+    "/README.md",
+    "/LICENSE",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

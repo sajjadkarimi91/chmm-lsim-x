@@ -218,3 +218,13 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# MATLAB
+*.asv
+*.m~
+*.mex*
+slprj/
+octave-workspace
+
+# benchmark outputs
+benchmarks/*.csv
