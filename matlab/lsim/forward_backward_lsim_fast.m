@@ -2,19 +2,12 @@
 function [P_O_model ,alpha_out , beta_out , alpha_T_out , b_c_ot_nc_out , P_observ_cond_to_state_out , P_observ_cond_to_state_comp_out]...
     = forward_backward_lsim_fast( pi_0_lsim , coupling_tetha_IM , transition_matrices_IM ,  gmm_para_lsim  ,  Y_in  , fb_constants )
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% SVI (fast) forward-backward, cell-array API.
+%FORWARD_BACKWARD_LSIM_FAST  LSIM forward-backward with the fast (SVI) backward recursion.
 %
-% Thin wrapper over forward_backward_lsim_kernel with variant 'fast', the single
-% implementation shared with forward_backward_lsim, forward_backward_lsim_sed,
-% em_lsim and em_lsim_fast. The backward message uses fixed coupling weights
-% raised to the power w_opt = sum_w( svi_eps + coupling_tetha_IM(zee,w) ) instead
-% of the SED pairwise conditionals, which also means the sum(M)^2 x T arrays the
-% SED variant needs are never allocated here.
-%
-% As a result of the unification this function now also supports full
-% covariance matrices, using the same lsim_fb_constants as every other LSIM
-% forward-backward and EM entry point.
+%   Same arguments and outputs as forward_backward_lsim; fb_constants defaults to
+%   lsim_fb_constants('fast') and must have variant 'fast' (lsim_backward_fast).
+%   The backward message uses fixed coupling weights raised to the power
+%   w_opt = sum_w( svi_eps + coupling_tetha_IM(zee,w) ); no sum(M)^2 x T arrays.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % See forward_backward_lsim for the full description of the arguments.

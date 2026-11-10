@@ -35,10 +35,11 @@ import pytest
 sys.path.insert(0, str(Path(__file__).parent / "fixtures"))
 from loader import load_em_trace_fixture, load_posterior_fixture  # noqa: E402
 
-from chmm_lsim.compat import FbConstants  # noqa: E402
-from chmm_lsim.em import compute_aic_bic, e_step, em_lsim, em_lsim_minibatch_train, finalize_expected_stats, m_step  # noqa: E402
-from chmm_lsim.params import LSIMParams  # noqa: E402
-from chmm_lsim.structure import LSIMStructure  # noqa: E402
+from chmm_lsim.core.constants import FbConstants  # noqa: E402
+from chmm_lsim.models.lsim.em import compute_aic_bic, e_step, em_lsim, em_lsim_minibatch_train, m_step  # noqa: E402
+from chmm_lsim.learning.em_loop import finalize_expected_stats  # noqa: E402
+from chmm_lsim.models.lsim.params import LSIMParams  # noqa: E402
+from chmm_lsim.core.structure import LSIMStructure  # noqa: E402
 
 RTOL, ATOL = 1e-8, 1e-9
 
@@ -247,8 +248,9 @@ def test_refined_and_raw_training_diverge_but_both_stay_valid(fixtures_dir):
 def _tiny_poise_model():
     """A small, healthy 2-channel model for the driver test below -- built here
     rather than loaded from a fixture so the test states its own inputs."""
-    from chmm_lsim.params import ChannelGMM, LSIMParams
-    from chmm_lsim.structure import LSIMStructure
+    from chmm_lsim.emissions.gmm import ChannelGMM
+    from chmm_lsim.models.lsim.params import LSIMParams
+    from chmm_lsim.core.structure import LSIMStructure
 
     structure = LSIMStructure(channel_state_num=(2, 2), channel_obs_dim=(1, 1), num_gmm_component=(1, 1))
     rng = np.random.default_rng(0)

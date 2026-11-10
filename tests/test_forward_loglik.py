@@ -22,10 +22,10 @@ import pytest
 sys.path.insert(0, str(Path(__file__).parent / "fixtures"))
 from loader import load_posterior_fixture  # noqa: E402
 
-import chmm_lsim.em as em_mod
+import chmm_lsim.models.lsim.em as em_mod
 from chmm_lsim import ChannelGMM, FbConstants, LSIMParams, LSIMStructure, e_step, em_lsim_minibatch_train
 from chmm_lsim.backends.base import UnsupportedCombination, get_backend, run_backend, run_backend_loglik
-from chmm_lsim.validate import ValidationError
+from chmm_lsim.core.validate import ValidationError
 
 try:
     import numba  # noqa: F401
@@ -266,7 +266,7 @@ def test_validate_all_enforces_backward_side_invariants(monkeypatch):
     """A planted backward-only invariant failure (gamma block sums) must raise
     under validate='all' exactly as the posterior path does; forward-only
     validate='params' never evaluates it."""
-    import chmm_lsim.inference.sed as sed_mod
+    import chmm_lsim.models.lsim.inference.sed as sed_mod
 
     structure, params, Y = _multi_trial_problem(seed=12)
     real = sed_mod._assert_block_sum_one

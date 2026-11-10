@@ -20,7 +20,7 @@ import textwrap
 import numpy as np
 import pytest
 
-import chmm_lsim.em as em_mod
+import chmm_lsim.models.lsim.em as em_mod
 from chmm_lsim import ChannelGMM, FbConstants, LSIMParams, LSIMStructure, e_step, em_lsim_minibatch, em_lsim_minibatch_train
 
 
@@ -98,7 +98,7 @@ _WARM_PARENT_SCRIPT = textwrap.dedent('''
     import numpy as np
 
     def main():
-        import chmm_lsim.em as em
+        import chmm_lsim.models.lsim.em as em
         from chmm_lsim import FbConstants, LSIMStructure, e_step, em_lsim_minibatch_train, initialize_lsim_params
         rng = np.random.default_rng(0)
         st = LSIMStructure(channel_state_num=(4,) * 4, channel_obs_dim=(1,) * 4, num_gmm_component=(1,) * 4)
@@ -145,7 +145,7 @@ def test_default_process_pools_work_after_a_fully_warmed_parent(tmp_path):
 
 _LIBFFI_CLOSURE_SCRIPT = textwrap.dedent("""
     import ctypes, concurrent.futures as cf, multiprocessing as mp
-    import chmm_lsim.em as em
+    import chmm_lsim.models.lsim.em as em
 
     def work(n):
         libc = ctypes.CDLL(None)

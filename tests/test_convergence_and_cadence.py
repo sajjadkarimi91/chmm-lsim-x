@@ -11,7 +11,7 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-import chmm_lsim.em as em_mod
+import chmm_lsim.models.lsim.em as em_mod
 from chmm_lsim import (
     ChannelGMM,
     FbConstants,
@@ -22,7 +22,7 @@ from chmm_lsim import (
     load_lsim_params,
     save_lsim_params,
 )
-from chmm_lsim.em import _legacy_convergence_stop, _RobustConvergenceMonitor
+from chmm_lsim.learning.minibatch import _legacy_convergence_stop, _RobustConvergenceMonitor
 
 # The real ctx1 M=5 coherent trace shape (s0full, epoch-to-epoch deltas): still
 # improving on net, but epochs 12 and 14 decrease.

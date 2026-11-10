@@ -39,17 +39,12 @@ import pytest
 sys.path.insert(0, str(Path(__file__).parent / "fixtures"))
 from loader import load_em_trace_fixture, load_posterior_fixture  # noqa: E402
 
-from chmm_lsim.compat import FbConstants
-from chmm_lsim.em import (
-    apply_left2right_pi0_smoothing,
-    compute_aic_bic,
-    e_step,
-    em_lsim,
-    finalize_expected_stats,
-    m_step,
-)
-from chmm_lsim.params import ChannelGMM, LSIMParams
-from chmm_lsim.structure import LSIMStructure
+from chmm_lsim.core.constants import FbConstants
+from chmm_lsim.learning.em_loop import apply_left2right_pi0_smoothing, finalize_expected_stats
+from chmm_lsim.models.lsim.em import compute_aic_bic, e_step, em_lsim, m_step
+from chmm_lsim.emissions.gmm import ChannelGMM
+from chmm_lsim.models.lsim.params import LSIMParams
+from chmm_lsim.core.structure import LSIMStructure
 
 RTOL, ATOL = 1e-8, 1e-9
 SCENARIO = "c3_het_diag"
@@ -209,7 +204,7 @@ def _fake_expected_stats(structure, params, loglik):
     monkeypatched `e_step` must hand back something already in that state,
     or the driver's own finalize call (on an empty `channels` list, a no-op)
     would otherwise be the thing under test instead of the driver logic."""
-    import chmm_lsim.em as em_module
+    import chmm_lsim.models.lsim.em as em_module
 
     return em_module.ExpectedStats(
         zeta=np.zeros((structure.S, structure.S)),
@@ -228,7 +223,7 @@ def test_best_iterate_is_argmax_over_iterations_2_to_n(monkeypatch):
     """Iteration 1 is never the best-iterate even if it has the highest
     loglik: em_lsim.m's `if itr>2 ... else ...` unconditionally overwrites the
     snapshot at itr in {1,2}, so the argmax is effectively over {2..n}."""
-    import chmm_lsim.em as em_module
+    import chmm_lsim.models.lsim.em as em_module
 
     structure, params = _make_tiny_params()
     loglik_seq = [100.0, 1.0, 2.0, 3.0]  # iter 1 is the largest value, must still lose
@@ -251,7 +246,7 @@ def test_best_iterate_is_argmax_over_iterations_2_to_n(monkeypatch):
 
 
 def test_convergence_breaks_after_five_flat_diffs(monkeypatch):
-    import chmm_lsim.em as em_module
+    import chmm_lsim.models.lsim.em as em_module
 
     structure, params = _make_tiny_params()
     # 9 flat iterations then it would keep going; convergence should fire once
@@ -278,7 +273,7 @@ def test_convergence_break_excludes_its_own_iteration_from_best_iterate(monkeypa
     that iteration's own snapshot entirely -- even if its loglik would
     otherwise have been a new best. A prior version of this driver snapshotted
     first, so it returned iteration 11 here; the correct answer is 10."""
-    import chmm_lsim.em as em_module
+    import chmm_lsim.models.lsim.em as em_module
 
     structure, params = _make_tiny_params()
     # iters 1-9: 0..8 (ordinary increase); iters 10-11: two consecutive small
@@ -322,7 +317,7 @@ def test_convergence_break_excludes_its_own_iteration_from_best_iterate(monkeypa
 # --------------------------------------------------------------------------
 
 def test_full_covariance_low_mass_trigger_counts_missing_cells():
-    import chmm_lsim.em as em_module
+    import chmm_lsim.models.lsim.em as em_module
 
     structure = LSIMStructure(channel_state_num=(1,), channel_obs_dim=(2,), num_gmm_component=(1,))
     gmm = ChannelGMM(weights=np.array([[1.0]]), mu=np.zeros((2, 1, 1)), sigma=np.eye(2)[:, :, None, None], diag=False)
@@ -388,7 +383,7 @@ def test_low_mass_fallback_genuinely_differs_between_mu_and_full_sigma(fixtures_
 # --------------------------------------------------------------------------
 
 def test_nanvar_welford_stable_at_large_offsets():
-    from chmm_lsim.em import _empty_channel_stats, _welford_batch, finalize_channel_stats
+    from chmm_lsim.emissions.gmm import _empty_channel_stats, _welford_batch, finalize_channel_stats
 
     for offset in (1e10, 1e12):
         x = offset + np.arange(100.0)
@@ -403,7 +398,7 @@ def test_nanvar_single_observation_is_zero_not_nan():
     """MATLAB R2026a: var([5], [], 2, 'omitnan') == 0, not NaN (verified
     directly against MATLAB, not assumed) -- var([], [], 2, 'omitnan') is
     empty/NaN for zero observations, which stays NaN here."""
-    from chmm_lsim.em import _empty_channel_stats, _welford_batch, finalize_channel_stats
+    from chmm_lsim.emissions.gmm import _empty_channel_stats, _welford_batch, finalize_channel_stats
 
     cs = _empty_channel_stats(1, 1, 1, True)
     n, mean, M2 = _welford_batch(np.array([[1.0]]), np.array([[5.0]]))
@@ -476,7 +471,7 @@ def test_full_covariance_m_step_stable_at_large_offset():
 # --------------------------------------------------------------------------
 
 def test_merge_expected_stats_matches_single_call_over_all_trials(fixtures_dir):
-    from chmm_lsim.em import merge_expected_stats
+    from chmm_lsim.learning.em_loop import merge_expected_stats
 
     fx = load_em_trace_fixture(fixtures_dir, "c3_trials_unequal")
     structure, fbc = _build(fx)
@@ -523,7 +518,7 @@ def test_merge_expected_stats_matches_single_call_full_covariance():
     no real fixture combines full covariance with multiple trials, so this
     uses a small synthetic multi-trial model (internal consistency between
     two equivalent computation paths, not a MATLAB parity claim)."""
-    from chmm_lsim.em import merge_expected_stats
+    from chmm_lsim.learning.em_loop import merge_expected_stats
 
     structure = LSIMStructure(channel_state_num=(2,), channel_obs_dim=(2,), num_gmm_component=(1,))
     gmm = ChannelGMM(
@@ -562,7 +557,8 @@ def test_merge_expected_stats_matches_single_call_full_covariance():
 
 
 def test_merge_rejects_already_finalized_stats(fixtures_dir):
-    from chmm_lsim.em import merge_channel_stats, merge_expected_stats
+    from chmm_lsim.emissions.gmm import merge_channel_stats
+    from chmm_lsim.learning.em_loop import merge_expected_stats
 
     fx = load_em_trace_fixture(fixtures_dir, "c3_het_diag")
     structure, fbc = _build(fx)
@@ -632,7 +628,7 @@ def test_pi_steady_is_snapshotted_alongside_best_iterate(fixtures_dir):
 # --------------------------------------------------------------------------
 
 def test_matlab_compat_false_removes_diag_mu_bias_toward_zero():
-    import chmm_lsim.em as em_module
+    import chmm_lsim.models.lsim.em as em_module
 
     structure = LSIMStructure(channel_state_num=(1,), channel_obs_dim=(1,), num_gmm_component=(1,))
     gmm = ChannelGMM(weights=np.array([[1.0]]), mu=np.zeros((1, 1, 1)), sigma=np.ones((1, 1, 1)), diag=True)
@@ -680,7 +676,7 @@ def test_matlab_compat_full_covariance_sigma_fallback_is_invariant():
     output bit-for-bit in *both* modes -- proving the formula itself (in
     particular the denominator) is unbranched, which is the actual quirk-2
     invariance the plan asks for."""
-    import chmm_lsim.em as em_module
+    import chmm_lsim.models.lsim.em as em_module
 
     structure = LSIMStructure(channel_state_num=(1,), channel_obs_dim=(2,), num_gmm_component=(1,))
     gmm = ChannelGMM(
@@ -727,7 +723,7 @@ def test_eigenvalue_repair_threshold_follows_matlab_compat():
     boundary (1 vs 2 non-positive eigenvalues) is numerically fragile (the
     unconditional ridge tends to push a rank-deficient sample PD again), so
     this tests the repair rule directly rather than reverse-engineering data."""
-    from chmm_lsim.em import repair_covariance
+    from chmm_lsim.emissions.gmm import repair_covariance
 
     ridge = np.array([1e-6, 1e-6])
 
@@ -778,7 +774,7 @@ def test_full_covariance_m_step_runs_and_produces_valid_params():
 # --------------------------------------------------------------------------
 
 def test_e_step_dispatches_to_fast_variant(fixtures_dir):
-    from chmm_lsim.inference.fast import forward_backward_fast
+    from chmm_lsim.models.lsim.inference.fast import forward_backward_fast
 
     fx = load_posterior_fixture(fixtures_dir, "c3_het_diag__fast")
     structure = LSIMStructure(

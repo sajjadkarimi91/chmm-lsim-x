@@ -23,12 +23,13 @@ from chmm_lsim.backends.base import (
     register_backend,
     run_backend,
 )
-from chmm_lsim.compat import FbConstants
-from chmm_lsim.inference.fast import forward_backward_fast
-from chmm_lsim.inference.sed import forward_backward_sed
-from chmm_lsim.params import ChannelGMM, LSIMParams
-from chmm_lsim.structure import LSIMStructure
-from chmm_lsim.validate import ValidationError
+from chmm_lsim.core.constants import FbConstants
+from chmm_lsim.models.lsim.inference.fast import forward_backward_fast
+from chmm_lsim.models.lsim.inference.sed import forward_backward_sed
+from chmm_lsim.emissions.gmm import ChannelGMM
+from chmm_lsim.models.lsim.params import LSIMParams
+from chmm_lsim.core.structure import LSIMStructure
+from chmm_lsim.core.validate import ValidationError
 
 try:
     import numba as _numba_probe  # noqa: F401

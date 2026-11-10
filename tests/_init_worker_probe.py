@@ -1,7 +1,7 @@
 """Imported INSIDE spawned initialization workers by tests/test_init.py.
 
 `fit_and_record(job)` runs the production worker entry point
-(`chmm_lsim.init._fit_channel_job_in_worker`) on a real prepared job, and records
+(`chmm_lsim.emissions.gmm_init._fit_channel_job_in_worker`) on a real prepared job, and records
 every BLAS/OpenMP thread pool threadpoolctl can see while the real
 `GaussianMixture.fit` is executing. It only wraps `fit` for recording; the pool
 factory, initializer, import order and fit are the production ones.
@@ -13,7 +13,7 @@ import os
 
 
 def fit_and_record(job):
-    import chmm_lsim.init as init_module
+    import chmm_lsim.emissions.gmm_init as init_module
 
     record: dict = {"worker_limit_active_before_job": init_module._WORKER_THREAD_LIMIT is not None}
     real_import = init_module._import_gaussian_mixture

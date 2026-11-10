@@ -144,7 +144,7 @@ def test_saving_initializer_output_round_trips(tmp_path):
 
 import json  # noqa: E402
 
-from chmm_lsim.serialization import FORMAT_VERSION  # noqa: E402
+from chmm_lsim.models.lsim.serialization import FORMAT_VERSION  # noqa: E402
 
 
 def _valid_arrays(tmp_path, diag=True):
@@ -282,7 +282,7 @@ def test_failed_write_leaves_existing_destination_intact(tmp_path, monkeypatch):
     save_lsim_params(dest, params, metadata={"generation": 1})
     original = dest.read_bytes()
 
-    import chmm_lsim.serialization as ser
+    import chmm_lsim.models.lsim.serialization as ser
 
     real_savez = ser.np.savez
 
@@ -326,7 +326,7 @@ def test_float32_parameters_are_stored_as_float64(tmp_path):
 def test_save_refuses_float32_values_whose_float64_form_is_invalid(tmp_path):
     """Save validates the float64 arrays it writes, so it can never produce a
     file that load_lsim_params would reject."""
-    from chmm_lsim.validate import ValidationError
+    from chmm_lsim.core.validate import ValidationError
 
     _, params = _model(True)
     params.coupling = params.coupling.astype(np.float32)  # sums drift off 1.0 once upcast
@@ -356,7 +356,7 @@ def test_non_standard_json_constants_are_rejected_anywhere_in_the_header(tmp_pat
 
 
 def test_invalid_parameters_on_save_raise_serialization_error_with_cause(tmp_path):
-    from chmm_lsim.validate import ValidationError
+    from chmm_lsim.core.validate import ValidationError
 
     _, params = _model(True)
     params.pi_0 = np.full_like(params.pi_0, 0.9)  # not stochastic

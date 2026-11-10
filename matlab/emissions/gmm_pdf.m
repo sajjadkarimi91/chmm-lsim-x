@@ -1,18 +1,16 @@
-
 function [P_observ_cond_to_state,P_observ_cond_to_state_comp] = gmm_pdf( P_all , mu_all  , sigma_all  , observations_time_series   ,  state_numbers ,  dimension_numbers_index , num_gmm_component  )
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%this function work for diogonal covariance matrices
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% P_Observ_cond_to_State( t , State ) is P(y_t | x_t= State) & P_Observ_cond_to_State is a matrix (K x T)
-% z = mvnpdf(X,MU,SIGMA)
-
-%GMM parameter include GMMParam(state).P , GMMParam(state).mu , GMMParam(state).Sigma
-
-% StateNumber is between 1 to cardinality of hidden states
-
-% global P_Observ_cond_to_State GMMParam StateNumbers Observations nan_index correct_index miss_index P_Observ_cond_to_State_Comp
+%GMM_PDF  Gaussian-mixture emission densities, full covariance.
+%
+%   [B, B_comp] = gmm_pdf(P_all, mu_all, sigma_all, Y, M, dimension_numbers_index, K)
+%
+% Packed parameters as produced by lsim_pack_para (sigma_all is
+% sum(d) x max(d) x max(M) x max(K)). Y is sum(d) x T, NaN = missing; each
+% component is evaluated on the observed dimensions only, and a channel with
+% every dimension missing at time t has density 1.
+%   B_comp  sum(M) x max(K) x T, B_comp(i,k,t) = P(k|i) N(y_t; mu_ik, Sigma_ik)
+%   B       sum(M) x T, B = sum over k of B_comp
+% See gmm_pdf_fast for diagonal covariance.
 
 indexvalid =[];
 
@@ -41,10 +39,7 @@ for zee =  1:C
                 current_sig_temp = current_sig(~temp_pattern,~temp_pattern);
                 % at least one observed dimension; when every dimension of this
                 % channel is missing the channel contributes no evidence and the
-                % likelihood is 1, matching gmm_pdf_fast. The former test
-                % ~isempty(~temp_pattern) was always true (~temp_pattern is 1xd,
-                % never empty), so mvnpdf was called with a zero-column X and
-                % errored on fully missing timesteps.
+                % likelihood is 1, matching gmm_pdf_fast
                 if any(~temp_pattern)
                     PDFs = mvnpdf(X, current_mu_temp(:)', current_sig_temp);
                 else

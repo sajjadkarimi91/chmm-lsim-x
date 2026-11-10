@@ -46,12 +46,18 @@ dev = ["chmm-lsim[all]", "pytest>=8"]
 Homepage = "https://github.com/sajjadkarimi91/chmm-lsim-x"
 Repository = "https://github.com/sajjadkarimi91/chmm-lsim-x"
 Issues = "https://github.com/sajjadkarimi91/chmm-lsim-x/issues"
+Changelog = "https://github.com/sajjadkarimi91/chmm-lsim-x/blob/main/CHANGELOG.md"
 
 [tool.hatch.version]
 path = "src/chmm_lsim/__init__.py"
 
 [tool.hatch.build.targets.wheel]
+# The whole package tree: chmm_lsim and its subpackages (core, emissions,
+# models/lsim, models/lsim/inference, models/chmm, learning,
+# learning/discriminative, backends) plus the historical-path modules
+# (inference, discriminative) kept for backward compatibility.
 packages = ["src/chmm_lsim"]
+exclude = ["**/__pycache__", "**/*.py[co]", "**/*.orig", "**/*.rej"]
 
 [tool.hatch.build.targets.sdist]
 # Allowlist: the repository also holds the MATLAB toolbox, tests with binary
@@ -60,8 +66,10 @@ include = [
     "/src/chmm_lsim/**",
     "/pyproject.toml",
     "/README.md",
+    "/CHANGELOG.md",
     "/LICENSE",
 ]
+exclude = ["**/__pycache__", "**/*.py[co]", "**/*.orig", "**/*.rej"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

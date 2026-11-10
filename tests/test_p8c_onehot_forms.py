@@ -42,12 +42,14 @@ from loader import load_em_trace_fixture, load_posterior_fixture  # noqa: E402
 
 import chmm_lsim.backends.torch_batched as tb  # noqa: E402
 from chmm_lsim.backends.base import run_backend  # noqa: E402
-from chmm_lsim.compat import FbConstants  # noqa: E402
+from chmm_lsim.core.constants import FbConstants  # noqa: E402
 from chmm_lsim.backends.torch_batched import forward_backward_batch  # noqa: E402
-from chmm_lsim.em import e_step, em_lsim, finalize_expected_stats  # noqa: E402
-from chmm_lsim.params import ChannelGMM, LSIMParams  # noqa: E402
-from chmm_lsim.structure import LSIMStructure  # noqa: E402
-from chmm_lsim.validate import ValidationError  # noqa: E402
+from chmm_lsim.models.lsim.em import e_step, em_lsim  # noqa: E402
+from chmm_lsim.learning.em_loop import finalize_expected_stats  # noqa: E402
+from chmm_lsim.emissions.gmm import ChannelGMM  # noqa: E402
+from chmm_lsim.models.lsim.params import LSIMParams  # noqa: E402
+from chmm_lsim.core.structure import LSIMStructure  # noqa: E402
+from chmm_lsim.core.validate import ValidationError  # noqa: E402
 
 # Calibrated from the measurements in this module's docstring, with ~10x headroom over the worst
 # (CUDA) value: beta 1.0e-9 -> 1e-8; alpha 2.2e-16 -> 1e-14; scale 1.8e-15 -> 1e-13.

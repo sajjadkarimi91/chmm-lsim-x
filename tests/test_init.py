@@ -53,20 +53,20 @@ from numpy.typing import NDArray
 sys.path.insert(0, str(Path(__file__).parent / "fixtures"))
 from loader import load_em_trace_fixture, load_init_reference_fixture  # noqa: E402
 
-from chmm_lsim.compat import FbConstants
-from chmm_lsim.em import em_lsim
-from chmm_lsim.init import (
+from chmm_lsim.core.constants import FbConstants
+from chmm_lsim.models.lsim.em import em_lsim
+from chmm_lsim.emissions.gmm_init import (
     InitialisationError,
     _channel_variance,
     _compute_regularizer,
     _fit_channel,
     _group_components_into_states,
-    initialize_lsim_params,
 )
-from chmm_lsim.structure import LSIMStructure
-from chmm_lsim.validate import ValidationError
+from chmm_lsim.models.lsim.init import initialize_lsim_params
+from chmm_lsim.core.structure import LSIMStructure
+from chmm_lsim.core.validate import ValidationError
 
-import chmm_lsim.init as init_module
+import chmm_lsim.emissions.gmm_init as init_module
 
 try:
     import sklearn  # noqa: F401
@@ -668,11 +668,7 @@ def test_seeded_init_reaches_comparable_loglik_to_matlab_init(fixtures_dir):
 
 import concurrent.futures  # noqa: E402
 
-from chmm_lsim.init import (  # noqa: E402
-    _ChannelFitJob,
-    _fit_channel_job_in_worker,
-    _prepare_channel_job,
-)
+from chmm_lsim.emissions.gmm_init import _ChannelFitJob, _fit_channel_job_in_worker, _prepare_channel_job
 
 
 def _small_hetero_problem(seed=21):

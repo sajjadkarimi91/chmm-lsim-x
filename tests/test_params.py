@@ -12,8 +12,9 @@ import pytest
 sys.path.insert(0, str(Path(__file__).parent / "fixtures"))
 from loader import load_posterior_fixture  # noqa: E402
 
-from chmm_lsim.params import ChannelGMM, LSIMParams
-from chmm_lsim.structure import LSIMStructure
+from chmm_lsim.emissions.gmm import ChannelGMM
+from chmm_lsim.models.lsim.params import LSIMParams
+from chmm_lsim.core.structure import LSIMStructure
 
 
 def _make_diag_params() -> LSIMParams:

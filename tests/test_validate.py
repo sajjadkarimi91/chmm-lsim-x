@@ -10,9 +10,11 @@ import warnings
 import numpy as np
 import pytest
 
-from chmm_lsim.params import ChannelGMM, LSIMParams
-from chmm_lsim.structure import LSIMStructure
-from chmm_lsim.validate import ValidationError, validate_observations, validate_params
+from chmm_lsim.emissions.gmm import ChannelGMM
+from chmm_lsim.models.lsim.params import LSIMParams
+from chmm_lsim.core.structure import LSIMStructure
+from chmm_lsim.core.validate import ValidationError, validate_observations
+from chmm_lsim.models.lsim.params import validate_params
 
 
 def _make_diag_params() -> LSIMParams:

@@ -64,16 +64,12 @@ sys.path.insert(0, str(Path(__file__).parent / "fixtures"))
 from loader import P10A_SCENARIO_IDS, load_em_trace_fixture, load_p10a_scheduling_fixture  # noqa: E402
 
 from chmm_lsim.backends.base import UnsupportedCombination
-from chmm_lsim.compat import FbConstants
-from chmm_lsim.em import (
-    TrialExecutionError,
-    e_step,
-    finalize_expected_stats,
-    m_step,
-    merge_expected_stats,
-)
-from chmm_lsim.params import ChannelGMM, LSIMParams
-from chmm_lsim.structure import LSIMStructure
+from chmm_lsim.core.constants import FbConstants
+from chmm_lsim.learning.em_loop import TrialExecutionError, finalize_expected_stats, merge_expected_stats
+from chmm_lsim.models.lsim.em import e_step, m_step
+from chmm_lsim.emissions.gmm import ChannelGMM
+from chmm_lsim.models.lsim.params import LSIMParams
+from chmm_lsim.core.structure import LSIMStructure
 
 RTOL, ATOL = 1e-8, 1e-9  # same as test_em.py's P4 gate -- measured there against real MATLAB fixtures
 EXECUTORS = ("thread", "process")
@@ -218,7 +214,7 @@ def test_n_jobs_one_never_touches_the_parallel_machinery(monkeypatch):
     ever constructed must not affect an n_jobs=1 call at all."""
     import concurrent.futures as cf
 
-    import chmm_lsim.em as em_mod
+    import chmm_lsim.models.lsim.em as em_mod
 
     def _boom(*a, **k):
         raise AssertionError("n_jobs=1 must never construct an executor")
@@ -327,7 +323,7 @@ def test_bounded_in_flight_stays_bounded_as_n_grows():
     observed maximum never exceeds em._IN_FLIGHT_MULTIPLIER * n_jobs --
     regardless of how large N is (parametrized across two very different
     N to rule out a bound that merely happens to hold for one size)."""
-    import chmm_lsim.em as em_mod
+    import chmm_lsim.models.lsim.em as em_mod
 
     tracker: dict = {}
     OriginalCls = concurrent.futures.ThreadPoolExecutor
@@ -365,7 +361,7 @@ def test_bounded_in_flight_never_retains_full_result_list():
     `merge_expected_stats` to record the length of every list it is ever
     called with, and confirm every call site only ever passes it exactly 2
     chunks (the running merge plus the newest one), never a long list."""
-    import chmm_lsim.em as em_mod
+    import chmm_lsim.models.lsim.em as em_mod
 
     call_lengths = []
     original_merge = em_mod.merge_expected_stats

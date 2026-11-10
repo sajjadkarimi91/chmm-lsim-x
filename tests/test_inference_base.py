@@ -8,8 +8,8 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-from chmm_lsim.inference.base import Diagnostics, Posterior
-from chmm_lsim.structure import LSIMStructure
+from chmm_lsim.models.lsim.inference.base import Diagnostics, Posterior
+from chmm_lsim.core.structure import LSIMStructure
 
 
 def _make_posterior(log_scale: np.ndarray) -> Posterior:
@@ -126,9 +126,9 @@ def test_channel_view_b_comp_matches_real_heterogeneous_k_fixture(fixtures_dir):
     sys.path.insert(0, str(Path(fixtures_dir)))
     from loader import load_posterior_fixture
 
-    from chmm_lsim.compat import FbConstants
-    from chmm_lsim.inference.sed import forward_backward_sed
-    from chmm_lsim.params import LSIMParams
+    from chmm_lsim.core.constants import FbConstants
+    from chmm_lsim.models.lsim.inference.sed import forward_backward_sed
+    from chmm_lsim.models.lsim.params import LSIMParams
 
     fx = load_posterior_fixture(fixtures_dir, "c5_K_mixed__sed")
     structure = LSIMStructure(

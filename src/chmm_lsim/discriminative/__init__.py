@@ -1,32 +1,24 @@
-"""Discriminative training of LSIM class models with maximum mutual information (MMI, published
-recipe of Woodland & Povey 2002; Python port of the MATLAB trainer in ``matlab/discriminative``),
-with CPU process-pool and (multi-)GPU torch engines and stochastic mini-batches.
+"""Discriminative (MMI) training of LSIM class models: the public
+``chmm_lsim.discriminative`` namespace (implemented in
+`chmm_lsim.learning.discriminative`, whose module docstring describes the method).
 
-Entry points: :func:`em_lsim_discriminative` (training) and :func:`lsim_discriminative_predict`
-(scores and predictions), named as in MATLAB; ``train_discriminative`` and ``predict`` are
-aliases kept for existing code. See ``trainer.py`` for the method
-and ``options.py`` for every option.
+Entry points: `em_lsim_discriminative` (training) and
+`lsim_discriminative_predict` (scores and predictions); ``train_discriminative``
+and ``predict`` are aliases of these two, kept for existing code. The trainer
+is specific to diagonal-covariance Gaussian-mixture emissions.
 """
 
-from chmm_lsim.discriminative.counts import DiscCounts, NonfiniteStatistics, sequence_counts
-from chmm_lsim.discriminative.domain import Domain, at_bounds, build_domain, project
-from chmm_lsim.discriminative.engines import NumpyEngine, TorchEngine, available_cuda_devices, make_engine
-from chmm_lsim.discriminative.matlab_io import load_packed_model, packed_to_params
-from chmm_lsim.discriminative.metrics import (
-    binary_metrics, detection_score, evaluate_models, score_metrics, threshold_metrics, tune_threshold,
-)
-from chmm_lsim.discriminative.objective import ObjectiveConfig, balanced_accuracy, objective
-from chmm_lsim.discriminative.options import DiscOptions, OptionError, make_options
-from chmm_lsim.discriminative.trainer import (
-    TrainingError, TrainResult, em_lsim_discriminative, lsim_discriminative_predict, predict,
-    train_discriminative,
-)
-from chmm_lsim.discriminative.updates import ebw_proposal, interpolate, published_update, weak_sense
+from chmm_lsim.learning.discriminative import *  # noqa: F401,F403
+from chmm_lsim.learning.discriminative import __all__  # noqa: F401
 
-__all__ = [
-    "em_lsim_discriminative", "lsim_discriminative_predict", "DiscCounts", "DiscOptions", "Domain", "NonfiniteStatistics", "NumpyEngine", "ObjectiveConfig", "OptionError",
-    "TorchEngine", "TrainResult", "TrainingError", "at_bounds", "available_cuda_devices", "balanced_accuracy",
-    "binary_metrics", "build_domain", "detection_score", "evaluate_models", "ebw_proposal", "interpolate", "load_packed_model", "make_engine",
-    "make_options", "objective", "packed_to_params", "predict", "project", "published_update", "score_metrics", "sequence_counts", "threshold_metrics", "tune_threshold",
-    "train_discriminative", "weak_sense",
-]
+_SUBMODULES = ("counts", "domain", "engines", "kernels", "matlab_io", "metrics", "objective", "options", "trainer", "updates")
+
+
+def __getattr__(name: str):
+    # Historical submodules (`chmm_lsim.discriminative.trainer`, ...) stay reachable
+    # as attributes; importing one emits a DeprecationWarning.
+    if name in _SUBMODULES:
+        import importlib
+
+        return importlib.import_module(f"{__name__}.{name}")
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")

@@ -22,11 +22,12 @@ at call time -- avoiding both an import cycle with `inference/registry.py`
 
 from __future__ import annotations
 
+import dataclasses
 import importlib
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Callable
 
-from chmm_lsim.validate import check_structure_matches
+from chmm_lsim.core.validate import check_structure_matches
 
 if TYPE_CHECKING:
     # Only for annotations (deferred by `from __future__ import annotations`
@@ -36,7 +37,7 @@ if TYPE_CHECKING:
     # `backends.numpy_`) before this module has finished executing,
     # producing a circular-import error the moment anything imports
     # `backends.base` before `backends.numpy_` has fully loaded.
-    from chmm_lsim.inference.base import Posterior
+    from chmm_lsim.models.lsim.inference.base import Posterior
 
 
 class UnsupportedCombination(ValueError):
@@ -58,7 +59,14 @@ class BackendCapabilities:
     narrower, sed-specific declaration (the `method=` kwarg of
     `forward_backward_sed`), since a backend can support `sed` overall while
     only implementing one of its two `P_cond`-construction methods (P7's
-    numba backend implements `"optimized"` only, not `"reference"`)."""
+    numba backend implements `"optimized"` only, not `"reference"`).
+
+    `emission_models` names the emission models (`chmm_lsim.emissions`) the
+    backend's kernels can evaluate. A backend built only on the generic
+    Python entry points (the NumPy one) sets `any_variant=True` /
+    `any_emission_model=True`: it then runs every registered inference
+    variant / emission model, and `get_backend` reports the currently
+    registered ones in `variants` / `emission_models`."""
 
     name: str
     variants: tuple[str, ...]
@@ -67,6 +75,10 @@ class BackendCapabilities:
     batched: bool = False
     gpu: bool = False
     sed_methods: tuple[str, ...] = ("optimized", "reference")
+    _: dataclasses.KW_ONLY
+    emission_models: tuple[str, ...] = ("gmm",)
+    any_variant: bool = False
+    any_emission_model: bool = False
 
 
 Runner = Callable[..., "Posterior"]  # string forward-ref: never resolved at runtime, see the TYPE_CHECKING import above
@@ -133,7 +145,26 @@ def get_backend(name: str) -> BackendCapabilities:
     lazily loadable, and lets `MissingBackendDependency` propagate as-is for
     a lazily-loadable backend whose optional dependency isn't installed."""
     _ensure_loaded(name)
-    return _BACKENDS[name]
+    caps = _BACKENDS[name]
+    if caps.any_variant or caps.any_emission_model:
+        updates = {}
+        if caps.any_variant:
+            from chmm_lsim.models.lsim.inference.registry import registered_variants
+
+            updates["variants"] = registered_variants()
+        if caps.any_emission_model:
+            from chmm_lsim.emissions.base import registered_emission_models
+
+            updates["emission_models"] = registered_emission_models()
+        caps = dataclasses.replace(caps, **updates)
+    return caps
+
+
+def emission_model_name(params) -> str:
+    """Registry name of the emission model of `params`."""
+    from chmm_lsim.emissions.base import emission_model_for
+
+    return emission_model_for(params.emissions).name
 
 
 def get_runner(name: str) -> Runner:
@@ -149,6 +180,7 @@ def check_capability(
     mode: str = "posterior",
     batched: bool = False,
     method: str | None = None,
+    emission_model: str | None = None,
 ) -> BackendCapabilities:
     """Raises `UnsupportedCombination` -- naming the backend and the specific
     unsupported axis -- unless every axis of the request is declared
@@ -168,7 +200,10 @@ def check_capability(
     carries no information about `sed`-specific intent -- see
     `run_backend`'s own docstring for why it separately rejects an
     *explicitly*-passed `method=None` for a non-`sed` variant, a
-    distinction only visible at the `**kwargs`-inspecting layer, not here."""
+    distinction only visible at the `**kwargs`-inspecting layer, not here.
+
+    `emission_model` (a registered emission-model name, or `None` for "not
+    checked") must be one the backend declares in `emission_models`."""
     caps = get_backend(name)
     if variant not in caps.variants:
         raise UnsupportedCombination(f"backend={name!r} does not support inference variant={variant!r} (supported variants: {caps.variants})")
@@ -178,6 +213,10 @@ def check_capability(
         raise UnsupportedCombination(f"backend={name!r} does not support mode={mode!r} (supported modes: {caps.modes})")
     if batched and not caps.batched:
         raise UnsupportedCombination(f"backend={name!r} does not support batched execution (batched=False only)")
+    if emission_model is not None and emission_model not in caps.emission_models:
+        raise UnsupportedCombination(
+            f"backend={name!r} does not support emission model {emission_model!r} (supported emission models: {caps.emission_models})"
+        )
     if method is not None:
         if variant != "sed":
             raise UnsupportedCombination(
@@ -287,7 +326,10 @@ def run_backend(
             "run_backend/forward_backward is always unbatched (batched=False) -- got batched=True. "
             "Use backends.torch_batched.forward_backward_batch directly for batched execution."
         )
-    check_capability(name, variant=variant, dtype=dtype, mode=mode, batched=batched, method=kwargs.get("method"))
+    check_capability(
+        name, variant=variant, dtype=dtype, mode=mode, batched=batched, method=kwargs.get("method"),
+        emission_model=emission_model_name(params),
+    )
     runner = get_runner(name)
     # `dtype` is forwarded to the runner (P8a: the torch backend genuinely
     # needs to know it); `mode`/`batched` are not (both are fixed to
@@ -334,7 +376,7 @@ def run_backend_loglik(name: str, variant: str, structure, params, Y, fb_constan
             f"conflicting inference variant: run_backend_loglik was asked for variant={variant!r}, but "
             f"fb_constants.variant={fb_constants.variant!r} -- these must agree"
         )
-    check_capability(name, variant=variant, mode="loglik")
+    check_capability(name, variant=variant, mode="loglik", emission_model=emission_model_name(params))
     if validate == "all":
         return run_backend(name, variant, structure, params, Y, fb_constants, validate="all").loglik
     runner = _LOGLIK_RUNNERS.get(name)

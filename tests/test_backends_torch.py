@@ -52,13 +52,15 @@ sys.path.insert(0, str(Path(__file__).parent / "fixtures"))
 from loader import load_posterior_fixture  # noqa: E402
 
 from chmm_lsim.backends.base import MissingBackendDependency, UnsupportedCombination, run_backend
-from chmm_lsim.compat import FbConstants
-from chmm_lsim.em import e_step, em_lsim, finalize_expected_stats
-from chmm_lsim.init import initialize_lsim_params
-from chmm_lsim.params import ChannelGMM, LSIMParams
-from chmm_lsim.simulate import simulate_lsim
-from chmm_lsim.structure import LSIMStructure
-from chmm_lsim.validate import ValidationError
+from chmm_lsim.core.constants import FbConstants
+from chmm_lsim.models.lsim.em import e_step, em_lsim
+from chmm_lsim.learning.em_loop import finalize_expected_stats
+from chmm_lsim.models.lsim.init import initialize_lsim_params
+from chmm_lsim.emissions.gmm import ChannelGMM
+from chmm_lsim.models.lsim.params import LSIMParams
+from chmm_lsim.models.lsim.simulate import simulate_lsim
+from chmm_lsim.core.structure import LSIMStructure
+from chmm_lsim.core.validate import ValidationError
 
 RTOL, ATOL = 1e-9, 1e-9
 B_RTOL = 1e-6  # relative-only, see module docstring
@@ -1358,6 +1360,6 @@ def test_torch_kernel_build_default_keeps_raw_pi0():
     raw = TorchKernel.build(structure, params, device=torch.device("cpu"), dtype=torch.float64)
     np.testing.assert_array_equal(raw.pi_0.numpy(), params.pi_0)
     reg = TorchKernel.build(structure, params, device=torch.device("cpu"), dtype=torch.float64, pi0_reg=fbc.pi0_reg)
-    from chmm_lsim.inference.sed import _regularize_pi0
+    from chmm_lsim.models.lsim.inference.sed import _regularize_pi0
 
     np.testing.assert_array_equal(reg.pi_0.numpy(), _regularize_pi0(params.pi_0, structure, fbc.pi0_reg))

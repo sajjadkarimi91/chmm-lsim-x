@@ -50,12 +50,14 @@ def build_W(transition: NDArray, coupling: NDArray, block_of_state: NDArray) -> 
 
 
 def _run_numpy(variant, structure, params, Y, fb_constants, *, validate="params", dtype="float64", **kwargs):
+    # Any registered inference variant (`any_variant=True` below): the kernel is
+    # looked up in the inference registry at call time.
     # `dtype` is forwarded by `backends.base.run_backend` uniformly to every
     # backend (P8a: the torch backend needs it); `check_capability` already
     # guarantees `dtype in caps.dtypes` before this runner is ever reached,
     # and `("float64",)` is this backend's only declared dtype, so accepting
     # (and discarding) it here is a no-op, not new behavior.
-    from chmm_lsim.inference.registry import get_inference
+    from chmm_lsim.models.lsim.inference.registry import get_inference
 
     kernel = get_inference(variant)
     return kernel(structure, params, Y, fb_constants, validate=validate, **kwargs)
@@ -66,10 +68,14 @@ def _loglik_numpy(variant, structure, params, Y, fb_constants, *, validate="para
     emissions, pi_0 regularization and `_forward_pass` (shared by `sed` and
     `fast`), stopping before the backward recursion. Bit-identical to
     `forward_backward_sed/fast(...).loglik`."""
+    from chmm_lsim.core.validate import check_structure_matches, validate_observations
     from chmm_lsim.emissions import compute_emissions
-    from chmm_lsim.inference.sed import _forward_pass, _regularize_pi0
-    from chmm_lsim.validate import check_structure_matches, validate_observations
+    from chmm_lsim.models.lsim.inference.registry import get_loglik_kernel
+    from chmm_lsim.models.lsim.inference.sed import _forward_pass, _regularize_pi0
 
+    custom = get_loglik_kernel(variant)
+    if custom is not None:
+        return custom(variant, structure, params, Y, fb_constants, validate=validate)
     if fb_constants.variant != variant:
         raise ValueError(f"loglik runner requires fb_constants.variant={variant!r}, got {fb_constants.variant!r}")
     if validate not in ("params", "off"):
@@ -95,6 +101,9 @@ register_backend(
         batched=False,
         gpu=False,
         sed_methods=("optimized", "reference"),
+        emission_models=("gmm",),
+        any_variant=True,
+        any_emission_model=True,
     ),
     _run_numpy,
     loglik_runner=_loglik_numpy,

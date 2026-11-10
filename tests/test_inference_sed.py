@@ -26,11 +26,11 @@ sys.path.insert(0, str(Path(__file__).parent / "fixtures"))
 from loader import load_posterior_fixture  # noqa: E402
 
 from chmm_lsim.backends.numpy_ import block_sum, broadcast_block, build_W
-from chmm_lsim.compat import FbConstants
-from chmm_lsim.inference.sed import forward_backward_sed, reconstruct_sed_diagnostics
-from chmm_lsim.params import LSIMParams
-from chmm_lsim.structure import LSIMStructure
-from chmm_lsim.validate import ValidationError
+from chmm_lsim.core.constants import FbConstants
+from chmm_lsim.models.lsim.inference.sed import forward_backward_sed, reconstruct_sed_diagnostics
+from chmm_lsim.models.lsim.params import LSIMParams
+from chmm_lsim.core.structure import LSIMStructure
+from chmm_lsim.core.validate import ValidationError
 
 RTOL, ATOL = 1e-8, 1e-9
 
@@ -158,7 +158,7 @@ def test_validate_all_catches_corrupted_alpha_block_sum(fixtures_dir):
     """Regression test: validate="all" previously checked only f<=h, so a
     corrupted alpha (per-block sum != 1, §0.2.1(i)) passed silently -- alpha
     itself, plus abar/gamma/V2 derived from it, are now checked at every t."""
-    import chmm_lsim.inference.sed as sed_module
+    import chmm_lsim.models.lsim.inference.sed as sed_module
 
     fx = load_posterior_fixture(fixtures_dir, "c1_minimal__sed")
     structure, params, fbc = _build(fx)
@@ -170,7 +170,7 @@ def test_validate_all_catches_corrupted_alpha_block_sum(fixtures_dir):
         alpha[:, 0] *= 2.0  # break the per-block-sum-1 invariant
         return alpha, scale, loglik
 
-    with mock.patch("chmm_lsim.inference.sed._forward_pass", corrupted_forward_pass):
+    with mock.patch("chmm_lsim.models.lsim.inference.sed._forward_pass", corrupted_forward_pass):
         with pytest.raises(ValidationError, match="per-block sums"):
             sed_module.forward_backward_sed(structure, params, fx.trials[0].Y, fbc, validate="all")
 

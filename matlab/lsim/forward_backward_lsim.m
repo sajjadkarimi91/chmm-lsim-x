@@ -3,12 +3,15 @@
 function [P_O_model ,alpha_out , beta_out , alpha_T_out , b_c_ot_nc_out , P_observ_cond_to_state_out , P_observ_cond_to_state_comp_out]...
     = forward_backward_lsim( pi_0_lsim , coupling_tetha_IM , transition_matrices_IM ,  gmm_para_lsim  ,  Y_in  , fb_constants )
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% SED forward-backward, cell-array API.
+%FORWARD_BACKWARD_LSIM  LSIM forward-backward inference, cell-array API.
 %
-% Packs the cell parameters and calls forward_backward_lsim_kernel, which is the
-% single implementation shared with forward_backward_lsim_sed and em_lsim.
-% Diagonal and full covariance are both supported.
+%   [log_lik, alpha, beta, alpha_T, b_c_ot_nc, B, B_comp] = ...
+%       forward_backward_lsim(pi_0_lsim, coupling_tetha_IM, transition_matrices_IM, gmm_para_lsim, Y, fb_constants)
+%
+% Packs the parameters (lsim_pack_para) and calls forward_backward_lsim_kernel. The
+% backward recursion is fb_constants.variant (default raw POISE; 'sed', 'fast' or a
+% user lsim_backward_<name>), see lsim_fb_constants. Diagonal and full covariance
+% are supported. Outputs are C x 1 cells (one block per channel) except log_lik.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Y_in is observations, a cell of size Cx1 where Y_in{c,1} is the c'th subsystem

@@ -62,17 +62,12 @@ import pytest
 sys.path.insert(0, str(Path(__file__).parent / "fixtures"))
 from loader import P10A_SCENARIO_IDS, load_p10a_scheduling_fixture  # noqa: E402
 
-from chmm_lsim.compat import FbConstants
-from chmm_lsim.em import (
-    MinibatchEmResult,
-    MinibatchSchedule,
-    MinibatchUpdate,
-    compute_aic_bic,
-    em_lsim,
-    em_lsim_minibatch_train,
-)
-from chmm_lsim.params import ChannelGMM, LSIMParams
-from chmm_lsim.structure import LSIMStructure
+from chmm_lsim.core.constants import FbConstants
+from chmm_lsim.learning.minibatch import MinibatchEmResult, MinibatchSchedule, MinibatchUpdate
+from chmm_lsim.models.lsim.em import compute_aic_bic, em_lsim, em_lsim_minibatch_train
+from chmm_lsim.emissions.gmm import ChannelGMM
+from chmm_lsim.models.lsim.params import LSIMParams
+from chmm_lsim.core.structure import LSIMStructure
 
 
 def _toy_model(rng, *, C=2, M=(2, 3), d=(1, 2), K=(1, 2), sigma_diag=True):
@@ -264,7 +259,7 @@ def test_best_epoch_is_argmax_over_epochs_2_to_n(monkeypatch):
     """Epoch 1 is never the best-epoch even if it has the highest coherent
     loglik -- the exact same rule em_lsim.m/em_lsim itself follows,
     verified here at epoch granularity via a controlled loglik sequence."""
-    import chmm_lsim.em as em_module
+    import chmm_lsim.models.lsim.em as em_module
 
     structure, params = _make_tiny_structure_and_params()
     loglik_seq = [100.0, 1.0, 2.0, 3.0]  # epoch 1 is the largest value, must still lose
@@ -302,7 +297,7 @@ def test_best_epoch_is_argmax_over_epochs_2_to_n(monkeypatch):
 
 
 def test_convergence_breaks_after_five_flat_diffs(monkeypatch):
-    import chmm_lsim.em as em_module
+    import chmm_lsim.models.lsim.em as em_module
 
     structure, params = _make_tiny_structure_and_params()
     loglik_seq = [float(i) for i in range(9)] + [8.0005] * 5
@@ -339,7 +334,7 @@ def test_convergence_break_excludes_its_own_epoch_from_best_epoch(monkeypatch):
     triggers convergence must exclude that epoch's own snapshot from best-
     epoch consideration, even if its own coherent loglik is higher than the
     previous epoch's."""
-    import chmm_lsim.em as em_module
+    import chmm_lsim.models.lsim.em as em_module
 
     structure, params = _make_tiny_structure_and_params()
     loglik_seq = [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 8.0004, 8.0005]
@@ -426,7 +421,7 @@ def test_minibatch_hook_called_once_per_minibatch_in_order_with_global_epoch_ind
 def test_convergence_break_stops_remaining_epoch_and_minibatch_hooks(monkeypatch):
     """When convergence fires at epoch e, no hook (epoch or minibatch) for
     any LATER epoch may fire -- those epochs never run at all."""
-    import chmm_lsim.em as em_module
+    import chmm_lsim.models.lsim.em as em_module
 
     structure, params = _make_tiny_structure_and_params()
     loglik_seq = [float(i) for i in range(9)] + [8.0005] * 5
@@ -472,21 +467,23 @@ def test_convergence_break_stops_remaining_epoch_and_minibatch_hooks(monkeypatch
 
 
 def test_compute_global_nanvar_called_exactly_once_for_multi_epoch_training(monkeypatch):
-    import chmm_lsim.em as em_module
+    import chmm_lsim.models.lsim.em as em_module
 
     rng = np.random.default_rng(80)
     structure, params = _toy_model(rng)
     Y_trials = _toy_trials(rng, structure, [10, 12, 8, 15])
     fbc = FbConstants(variant="sed")
 
-    real_compute_global_nanvar = em_module.compute_global_nanvar
+    import chmm_lsim.emissions.gmm as gmm_module
+
+    real_compute_global_nanvar = gmm_module.compute_global_nanvar
     calls = {"n": 0}
 
     def counting_compute_global_nanvar(structure, Y_trials):
         calls["n"] += 1
         return real_compute_global_nanvar(structure, Y_trials)
 
-    monkeypatch.setattr(em_module, "compute_global_nanvar", counting_compute_global_nanvar)
+    monkeypatch.setattr(gmm_module, "compute_global_nanvar", counting_compute_global_nanvar)
 
     em_module.em_lsim_minibatch_train(
         structure, params, Y_trials, fb_constants=fbc, max_iterations=5, num_minibatches=2, shuffle=False,
@@ -504,7 +501,7 @@ def test_compute_global_nanvar_called_exactly_once_for_multi_epoch_training(monk
 
 
 def test_minibatch_hook_fires_before_next_minibatch_update_begins(monkeypatch):
-    import chmm_lsim.em as em_module
+    import chmm_lsim.models.lsim.em as em_module
 
     rng = np.random.default_rng(90)
     structure, params = _toy_model(rng)
@@ -540,7 +537,7 @@ def test_minibatch_hook_fires_before_next_minibatch_update_begins(monkeypatch):
 
 
 def test_hooks_for_earlier_minibatches_already_delivered_when_a_later_one_fails(monkeypatch):
-    import chmm_lsim.em as em_module
+    import chmm_lsim.models.lsim.em as em_module
 
     rng = np.random.default_rng(91)
     structure, params = _toy_model(rng)
@@ -570,7 +567,7 @@ def test_hooks_for_earlier_minibatches_already_delivered_when_a_later_one_fails(
 
 
 def test_minibatch_hook_exception_stops_subsequent_minibatches(monkeypatch):
-    import chmm_lsim.em as em_module
+    import chmm_lsim.models.lsim.em as em_module
 
     rng = np.random.default_rng(92)
     structure, params = _toy_model(rng)
@@ -792,7 +789,7 @@ def test_zero_transition_epoch_stays_finite_in_coherent_trace():
 
 def test_p10d_types_exported_from_top_level_package():
     import chmm_lsim
-    from chmm_lsim.em import MinibatchTrainingResult as _MinibatchTrainingResult
+    from chmm_lsim.learning.minibatch import MinibatchTrainingResult as _MinibatchTrainingResult
 
     assert chmm_lsim.em_lsim_minibatch_train is em_lsim_minibatch_train
     assert "em_lsim_minibatch_train" in chmm_lsim.__all__

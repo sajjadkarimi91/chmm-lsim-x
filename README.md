@@ -39,7 +39,7 @@ Use exact inference (Cartesian product of channel states) only for small models;
 **MATLAB** (tested with R2024b; the GMM initialization in `em_lsim` uses the Statistics and Machine Learning Toolbox):
 
 ```matlab
-addpath(genpath('<path to chmm-lsim-x>/matlab'))
+run('<path to chmm-lsim-x>/matlab/setup_chmm_lsim.m')   % or: addpath(genpath('<path to chmm-lsim-x>/matlab'))
 ```
 
 **Python** (3.10 or later):
@@ -151,16 +151,30 @@ Demos: `examples/demo_run_lsim.py` and `examples/demo_run_chmm.py`.
 
 ```
 matlab/
-  lsim/            LSIM inference (POISE, SED, fast/SVI), EM, exact EM, constants
-  chmm/            full CHMM: EM, forward-backward, Viterbi, simulation
-  common/          Gaussian-mixture densities and parameter helpers
-  discriminative/  MMI training, prediction, metrics (+ tests/)
+  setup_chmm_lsim.m  adds the toolbox folders to the MATLAB path
+  lsim/              LSIM inference (POISE, SED, fast/SVI), EM, exact EM, constants, approximate Viterbi
+  lsim/backward/     one file per LSIM backward recursion
+  chmm/              full CHMM: EM, exact forward-backward, exact Viterbi, simulation
+  emissions/         Gaussian-mixture densities and sampling
+  common/            parameter helpers
+  discriminative/    MMI training, prediction, metrics (+ tests/)
   demos/
-src/chmm_lsim/     Python package
-tests/             Python tests (pytest), with MATLAB reference fixtures
-examples/          Python demos
-benchmarks/        runtime benchmark
+src/chmm_lsim/       Python package
+  core/              structure, validation, constants, serialization, joint-state utilities
+  emissions/         emission models (Gaussian mixtures) and their registry
+  models/lsim/       LSIM: inference (POISE, SED, fast), EM, initialization, simulation, Viterbi
+  models/chmm/       full CHMM
+  learning/          shared EM loop, mini-batch training, discriminative (MMI)
+  backends/          NumPy, numba, PyTorch
+tests/               Python tests (pytest), with MATLAB reference fixtures
+examples/            Python demos
+benchmarks/          runtime benchmark
+docs/EXTENDING.md    how to add inference recursions, emission models and model families
 ```
+
+## Versions and compatibility
+
+Releases follow [semantic versioning](https://semver.org): new models and features arrive in minor releases without breaking existing code, and anything public that is ever renamed or removed keeps working with a deprecation warning for at least one minor release first. The public API is everything importable from `chmm_lsim` (and `chmm_lsim.discriminative`) and every MATLAB function; Python submodules are internal, so import from `chmm_lsim` directly. Changes are listed in [`CHANGELOG.md`](CHANGELOG.md); [`docs/EXTENDING.md`](docs/EXTENDING.md) explains how new models are added.
 
 ## Tests
 

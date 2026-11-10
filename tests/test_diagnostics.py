@@ -17,17 +17,14 @@ import pytest
 sys.path.insert(0, str(Path(__file__).parent / "fixtures"))
 from loader import load_p6_fixture  # noqa: E402
 
-from chmm_lsim.diagnostics import (
-    joint_log_probability,
-    marginalize_joint_to_channels,
-    per_channel_total_variation,
-    total_variation_distance,
-)
+from chmm_lsim.models.lsim.diagnostics import joint_log_probability
+from chmm_lsim.core.diagnostics import marginalize_joint_to_channels, per_channel_total_variation, total_variation_distance
 from chmm_lsim.emissions import compute_emissions
-from chmm_lsim.equivalent import build_equivalent_hmm, exact_posterior
-from chmm_lsim.params import ChannelGMM, LSIMParams
-from chmm_lsim.structure import LSIMStructure
-from chmm_lsim.validate import ValidationError
+from chmm_lsim.models.lsim.equivalent import build_equivalent_hmm, exact_posterior
+from chmm_lsim.emissions.gmm import ChannelGMM
+from chmm_lsim.models.lsim.params import LSIMParams
+from chmm_lsim.core.structure import LSIMStructure
+from chmm_lsim.core.validate import ValidationError
 
 
 def _small_coupled_model():

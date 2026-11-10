@@ -1,18 +1,16 @@
-
 function [P_observ_cond_to_state,P_observ_cond_to_state_comp] = gmm_pdf_fast( P_all , mu_all  , sigma_all  , observations_time_series   ,  state_numbers ,  dimension_numbers_index , num_gmm_component  )
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%this function work for diogonal covariance matrices
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% P_Observ_cond_to_State( t , State ) is P(y_t | x_t= State) & P_Observ_cond_to_State is a matrix (K x T)
-% z = mvnpdf(X,MU,SIGMA)
-
-%GMM parameter include GMMParam(state).P , GMMParam(state).mu , GMMParam(state).Sigma
-
-% StateNumber is between 1 to cardinality of hidden states
-
-% global P_Observ_cond_to_State GMMParam StateNumbers Observations nan_index correct_index miss_index P_Observ_cond_to_State_Comp
+%GMM_PDF_FAST  Gaussian-mixture emission densities, diagonal covariance (vectorized).
+%
+%   [B, B_comp] = gmm_pdf_fast(P_all, mu_all, sigma_all, Y, M, dimension_numbers_index, K)
+%
+% Packed parameters as produced by lsim_pack_para (sigma_all is
+% sum(d) x max(M) x max(K), the diagonal variances). Y is sum(d) x T,
+% NaN = missing; missing dimensions are left out of the product, so a channel
+% with every dimension missing at time t has density 1.
+%   B_comp  sum(M) x max(K) x T, B_comp(i,k,t) = P(k|i) N(y_t; mu_ik, diag(sigma_ik))
+%   B       sum(M) x T, B = sum over k of B_comp
+% See gmm_pdf for full covariance.
 
 indexvalid =[];
 for zee =  1:length(state_numbers)    

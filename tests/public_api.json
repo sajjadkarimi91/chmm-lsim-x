@@ -1,0 +1,4596 @@
+{
+ "chmm_lsim": {
+  "BackendCapabilities": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "name"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "variants"
+    },
+    {
+     "default": "('float64',)",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "dtypes"
+    },
+    {
+     "default": "('posterior',)",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "modes"
+    },
+    {
+     "default": "False",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "batched"
+    },
+    {
+     "default": "False",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "gpu"
+    },
+    {
+     "default": "('optimized', 'reference')",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "sed_methods"
+    },
+    {
+     "default": "('gmm',)",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "emission_models"
+    },
+    {
+     "default": "False",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "any_variant"
+    },
+    {
+     "default": "False",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "any_emission_model"
+    }
+   ]
+  },
+  "BatchedPosteriorChunk": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "alpha"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "beta"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "gamma"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "scale"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "B"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "B_comp"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "log_scale"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "loglik"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "diag_arrays"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "sequence_indices"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "lengths"
+    }
+   ]
+  },
+  "CHMMJointModel": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "pi"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "transition"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "log_B"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "states"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "B"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "B_comp"
+    }
+   ]
+  },
+  "CHMMParams": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "pi_0"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "transition"
+    },
+    {
+     "default": "<factory>",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "emissions"
+    }
+   ]
+  },
+  "CHMMPosterior": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "loglik"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "alpha"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "gamma"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "B"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "B_comp"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "joint_gamma"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "joint_alpha"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "xi_sum"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    }
+   ]
+  },
+  "ChannelExpectedStats": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "resp"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "resp_pos"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "n_w_pos_diag"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "n_w_pos_full"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "weighted_W"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "weighted_mean"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "weighted_M2"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "pairwise_Q"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "pairwise_M"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "pairwise_C"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "u_pairwise_Q"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "u_pairwise_M"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "u_pairwise_C"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "n_obs"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "welford_mean"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "welford_M2"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "allzero_n"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "allzero_mean"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "allzero_M2"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "nanvar_y"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "fallback_mu"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "fallback_sigma_full"
+    }
+   ]
+  },
+  "ChannelGMM": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "weights"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "mu"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "sigma"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "diag"
+    }
+   ]
+  },
+  "Diagnostics": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": "0",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "zero_alpha_next_count"
+    },
+    {
+     "default": "0",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "beta_floor_hits"
+    },
+    {
+     "default": "0",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "f_le_h_violations"
+    },
+    {
+     "default": "0",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "nan_guard_hits"
+    }
+   ]
+  },
+  "EmResult": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "best_iterate"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "pi_steady"
+    },
+    {
+     "default": "<factory>",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "loglik_trace"
+    },
+    {
+     "default": "<factory>",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "aic_trace"
+    },
+    {
+     "default": "<factory>",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "bic_trace"
+    },
+    {
+     "default": "0",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "n_iterations"
+    }
+   ]
+  },
+  "EquivalentHMM": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "dims"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "pi0"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "transition"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "weights"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "mu"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "sigma"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "sigma_diag"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "cond_transitions"
+    }
+   ]
+  },
+  "EquivalentModelTooLargeError": {
+   "kind": "class",
+   "parameters": null
+  },
+  "ExpectedStats": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "zeta"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "gamma_first"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "gamma_sum"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "n_trials"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "n_transitions"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "T_all"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "loglik"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "channels"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "gamma_p0"
+    }
+   ]
+  },
+  "FbConstants": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": "'poise'",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "variant"
+    },
+    {
+     "default": "1e-09",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "beta_floor"
+    },
+    {
+     "default": "1e-10",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "pi0_reg"
+    },
+    {
+     "default": "1e-06",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "f_reg"
+    },
+    {
+     "default": "1e-08",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "svi_eps"
+    },
+    {
+     "default": "False",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "poise_refinement"
+    }
+   ]
+  },
+  "InitialisationError": {
+   "kind": "class",
+   "parameters": null
+  },
+  "LSIMParams": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "pi_0"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "transition"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "coupling"
+    },
+    {
+     "default": "<factory>",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "emissions"
+    }
+   ]
+  },
+  "LSIMStructure": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "channel_state_num"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "channel_obs_dim"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "num_gmm_component"
+    }
+   ]
+  },
+  "LayerBSummary": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "per_channel_tv_approx"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "per_channel_tv_baseline"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "mean_tv_approx"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "mean_tv_baseline"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "approx_closer_than_baseline"
+    }
+   ]
+  },
+  "MAX_JOINT_MIXTURE_COMPONENTS": {
+   "kind": "constant",
+   "type": "int"
+  },
+  "MAX_JOINT_STATES": {
+   "kind": "constant",
+   "type": "int"
+  },
+  "MinibatchEmResult": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "schedule"
+    },
+    {
+     "default": "<factory>",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "updates"
+    }
+   ]
+  },
+  "MinibatchSchedule": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "epochs"
+    }
+   ]
+  },
+  "MinibatchTrainingResult": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "best_epoch"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "pi_steady"
+    },
+    {
+     "default": "<factory>",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "loglik_trace"
+    },
+    {
+     "default": "<factory>",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "aic_trace"
+    },
+    {
+     "default": "<factory>",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "bic_trace"
+    },
+    {
+     "default": "0",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "n_epochs"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "minibatch"
+    },
+    {
+     "default": "<factory>",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "evaluated_epoch_indices"
+    },
+    {
+     "default": "'legacy'",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "convergence"
+    },
+    {
+     "default": "1",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "coherent_eval_interval"
+    },
+    {
+     "default": "'max_iterations'",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "stop_reason"
+    }
+   ]
+  },
+  "MinibatchUpdate": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "epoch_idx"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "minibatch_idx"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "trial_indices"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params_in"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params_out"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "n_trials"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "T_all"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "n_transitions"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "training_batch_loglik"
+    }
+   ]
+  },
+  "MissingBackendDependency": {
+   "kind": "class",
+   "parameters": null
+  },
+  "Posterior": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "loglik"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "alpha"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "beta"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "gamma"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "scale"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "B"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "B_comp"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "log_scale"
+    },
+    {
+     "default": "<factory>",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "diagnostics"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    }
+   ]
+  },
+  "RobustConvergence": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": "1e-05",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "rel_tol"
+    },
+    {
+     "default": "3",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "patience"
+    },
+    {
+     "default": "10",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "min_epochs"
+    }
+   ]
+  },
+  "SerializationError": {
+   "kind": "class",
+   "parameters": null
+  },
+  "TorchKernel": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "device"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "dtype"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "pi_0"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "W"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "transition"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "coupling"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "E"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "block_of_state"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "sigma_diag"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "emissions"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "max_K"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "flag_nan"
+    },
+    {
+     "default": "()",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "channel_slices"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "equal_block_size"
+    }
+   ]
+  },
+  "TrialExecutionError": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "trial_index"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "original_exception"
+    }
+   ]
+  },
+  "UnsupportedCombination": {
+   "kind": "class",
+   "parameters": null
+  },
+  "ValidationError": {
+   "kind": "class",
+   "parameters": null
+  },
+  "ViterbiResult": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "states"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "log_score"
+    }
+   ]
+  },
+  "__version__": {
+   "kind": "constant",
+   "type": "str"
+  },
+  "apply_left2right_pi0_smoothing": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "pi_0"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "left2right"
+    }
+   ]
+  },
+  "build_equivalent_hmm": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": "True",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validate"
+    }
+   ]
+  },
+  "check_capability": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "name"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "KEYWORD_ONLY",
+     "name": "variant"
+    },
+    {
+     "default": "'float64'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "dtype"
+    },
+    {
+     "default": "'posterior'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "mode"
+    },
+    {
+     "default": "False",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "batched"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "method"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "emission_model"
+    }
+   ]
+  },
+  "chmm_exact_forward_backward": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "pi"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "transition"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "log_B"
+    },
+    {
+     "default": "False",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "return_xi"
+    }
+   ]
+  },
+  "chmm_joint_model": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y"
+    },
+    {
+     "default": "True",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validate"
+    }
+   ]
+  },
+  "compute_aic_bic": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "sigma_diag"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "loglik"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "T_all"
+    }
+   ]
+  },
+  "compute_chmm_aic_bic": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "sigma_diag"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "loglik"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "T_all"
+    }
+   ]
+  },
+  "compute_emissions": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y"
+    }
+   ]
+  },
+  "compute_global_nanvar": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y_trials"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "max_chunk_observations"
+    }
+   ]
+  },
+  "e_step": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y_trials"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "fb_constants"
+    },
+    {
+     "default": "'numpy'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "backend"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "backend_options"
+    },
+    {
+     "default": "'params'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validate"
+    },
+    {
+     "default": "1",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "n_jobs"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "executor"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "start_method"
+    }
+   ]
+  },
+  "em_chmm": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y_trials"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "max_iterations"
+    },
+    {
+     "default": "True",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "matlab_compat"
+    },
+    {
+     "default": "False",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "check_convergence"
+    },
+    {
+     "default": "'params'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validate"
+    },
+    {
+     "default": "False",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "left2right"
+    },
+    {
+     "default": "False",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "raw_init_model"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "iter_hook"
+    }
+   ]
+  },
+  "em_lsim": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y_trials"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "KEYWORD_ONLY",
+     "name": "max_iterations"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "fb_constants"
+    },
+    {
+     "default": "'numpy'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "backend"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "backend_options"
+    },
+    {
+     "default": "True",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "matlab_compat"
+    },
+    {
+     "default": "True",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "check_convergence"
+    },
+    {
+     "default": "'params'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validate"
+    },
+    {
+     "default": "False",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "left2right"
+    },
+    {
+     "default": "False",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "raw_init_model"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "iter_hook"
+    }
+   ]
+  },
+  "em_lsim_discriminative": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "train"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "init_models"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "max_iteration"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validation"
+    },
+    {
+     "default": "False",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "resume"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "VAR_KEYWORD",
+     "name": "options"
+    }
+   ]
+  },
+  "em_lsim_minibatch": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y_trials"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "max_iterations"
+    },
+    {
+     "default": "<unset>",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "num_minibatches"
+    },
+    {
+     "default": "<unset>",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "shuffle"
+    },
+    {
+     "default": "<unset>",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "random_state"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "schedule"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "fb_constants"
+    },
+    {
+     "default": "'numpy'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "backend"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "backend_options"
+    },
+    {
+     "default": "1",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "n_jobs"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "executor"
+    },
+    {
+     "default": "True",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "matlab_compat"
+    },
+    {
+     "default": "'params'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validate"
+    },
+    {
+     "default": "False",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "left2right"
+    },
+    {
+     "default": "False",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "raw_init_model"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "start_method"
+    }
+   ]
+  },
+  "em_lsim_minibatch_train": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y_trials"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "max_iterations"
+    },
+    {
+     "default": "<unset>",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "num_minibatches"
+    },
+    {
+     "default": "<unset>",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "shuffle"
+    },
+    {
+     "default": "<unset>",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "random_state"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "schedule"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "fb_constants"
+    },
+    {
+     "default": "'numpy'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "backend"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "backend_options"
+    },
+    {
+     "default": "1",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "n_jobs"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "executor"
+    },
+    {
+     "default": "True",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "matlab_compat"
+    },
+    {
+     "default": "<unset>",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "check_convergence"
+    },
+    {
+     "default": "'params'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validate"
+    },
+    {
+     "default": "False",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "left2right"
+    },
+    {
+     "default": "False",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "raw_init_model"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "epoch_hook"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "minibatch_hook"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "convergence"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "robust_convergence"
+    },
+    {
+     "default": "1",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "coherent_eval_interval"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "start_method"
+    }
+   ]
+  },
+  "estimate_chunk_size": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "N"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "S"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "T_max"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "max_K"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "KEYWORD_ONLY",
+     "name": "device"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "KEYWORD_ONLY",
+     "name": "dtype"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "KEYWORD_ONLY",
+     "name": "max_memory_bytes"
+    },
+    {
+     "default": "0",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "D"
+    },
+    {
+     "default": "0",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "max_d"
+    }
+   ]
+  },
+  "exact_posterior": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "equiv"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y"
+    },
+    {
+     "default": "True",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validate"
+    }
+   ]
+  },
+  "finalize_channel_stats": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "stats"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "KEYWORD_ONLY",
+     "name": "sigma_diag"
+    }
+   ]
+  },
+  "finalize_expected_stats": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "stats"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "KEYWORD_ONLY",
+     "name": "sigma_diag"
+    }
+   ]
+  },
+  "forward_backward": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "fb_constants"
+    },
+    {
+     "default": "'numpy'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "backend"
+    },
+    {
+     "default": "'params'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validate"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "VAR_KEYWORD",
+     "name": "kwargs"
+    }
+   ]
+  },
+  "forward_backward_batch": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "dataset"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "fb_constants"
+    },
+    {
+     "default": "'torch'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "backend"
+    },
+    {
+     "default": "'loglik'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "mode"
+    },
+    {
+     "default": "'cpu'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "device"
+    },
+    {
+     "default": "'float64'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "dtype"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "chunk_size"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "max_memory_bytes"
+    },
+    {
+     "default": "'params'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validate"
+    },
+    {
+     "default": "'block'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "gz_form"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "method"
+    }
+   ]
+  },
+  "forward_backward_chmm": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y"
+    },
+    {
+     "default": "True",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validate"
+    },
+    {
+     "default": "False",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "return_joint"
+    }
+   ]
+  },
+  "forward_backward_fast": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "fb_constants"
+    },
+    {
+     "default": "'params'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validate"
+    }
+   ]
+  },
+  "forward_backward_from_emissions": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "pi_0"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "transition"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "coupling"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "B"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "B_comp"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "fb_constants"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "log_scale"
+    },
+    {
+     "default": "'params'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validate"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "VAR_KEYWORD",
+     "name": "kwargs"
+    }
+   ]
+  },
+  "forward_backward_poise": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "fb_constants"
+    },
+    {
+     "default": "'params'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validate"
+    }
+   ]
+  },
+  "forward_backward_sed": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "fb_constants"
+    },
+    {
+     "default": "'params'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validate"
+    },
+    {
+     "default": "'optimized'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "method"
+    }
+   ]
+  },
+  "forward_loglik_from_emissions": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "pi_0"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "transition"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "coupling"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "B"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "fb_constants"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "log_scale"
+    }
+   ]
+  },
+  "generate_minibatch_schedule": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "num_trials"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "max_iterations"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "num_minibatches"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "KEYWORD_ONLY",
+     "name": "shuffle"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "KEYWORD_ONLY",
+     "name": "rng"
+    }
+   ]
+  },
+  "get_backend": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "name"
+    }
+   ]
+  },
+  "get_inference": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "name"
+    }
+   ]
+  },
+  "gmm_pdf_diag": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y"
+    }
+   ]
+  },
+  "gmm_pdf_full": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y"
+    }
+   ]
+  },
+  "initialize_chmm_params": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y_trials"
+    },
+    {
+     "default": "True",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "sigma_diag"
+    },
+    {
+     "default": "0",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "seed"
+    },
+    {
+     "default": "True",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "matlab_compat"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "max_samples_per_channel"
+    },
+    {
+     "default": "1",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "n_jobs"
+    }
+   ]
+  },
+  "initialize_lsim_params": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y_trials"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "KEYWORD_ONLY",
+     "name": "sigma_diag"
+    },
+    {
+     "default": "0",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "seed"
+    },
+    {
+     "default": "True",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "matlab_compat"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "max_samples_per_channel"
+    },
+    {
+     "default": "1",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "n_jobs"
+    }
+   ]
+  },
+  "joint_log_probability": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "X"
+    },
+    {
+     "default": "True",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validate"
+    }
+   ]
+  },
+  "joint_state_from_index": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "index"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "dims"
+    }
+   ]
+  },
+  "joint_state_index": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "states"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "dims"
+    }
+   ]
+  },
+  "load_lsim_params": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "path"
+    }
+   ]
+  },
+  "lsim_discriminative_predict": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "models"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "log_prior"
+    },
+    {
+     "default": "1.0",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "score_scale"
+    },
+    {
+     "default": "'numpy'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "engine"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "VAR_KEYWORD",
+     "name": "eng"
+    }
+   ]
+  },
+  "lsim_to_chmm": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    }
+   ]
+  },
+  "m_step": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "stats"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "KEYWORD_ONLY",
+     "name": "sigma_diag"
+    },
+    {
+     "default": "True",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "matlab_compat"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "params_in"
+    }
+   ]
+  },
+  "marginalize_joint_to_channels": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "dims"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "joint_posterior"
+    }
+   ]
+  },
+  "merge_channel_stats": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "chunks"
+    }
+   ]
+  },
+  "merge_expected_stats": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "chunks"
+    }
+   ]
+  },
+  "per_channel_total_variation": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "marginal_a"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "marginal_b"
+    }
+   ]
+  },
+  "register_backend": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "caps"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "runner"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "loglik_runner"
+    }
+   ]
+  },
+  "register_inference": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "name"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "loglik"
+    }
+   ]
+  },
+  "repair_covariance": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "sig_temp"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "ridge_diag"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "KEYWORD_ONLY",
+     "name": "matlab_compat"
+    }
+   ]
+  },
+  "run_backend": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "name"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "variant"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "fb_constants"
+    },
+    {
+     "default": "'params'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validate"
+    },
+    {
+     "default": "'float64'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "dtype"
+    },
+    {
+     "default": "'posterior'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "mode"
+    },
+    {
+     "default": "False",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "batched"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "VAR_KEYWORD",
+     "name": "kwargs"
+    }
+   ]
+  },
+  "save_lsim_params": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "path"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "metadata"
+    }
+   ]
+  },
+  "scaled_forward_backward": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "pi0"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "transition"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "B"
+    }
+   ]
+  },
+  "select_p": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "rng"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "p"
+    }
+   ]
+  },
+  "simulate_chmm": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "T"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "KEYWORD_ONLY",
+     "name": "seed"
+    },
+    {
+     "default": "True",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validate"
+    }
+   ]
+  },
+  "simulate_lsim": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "T"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "KEYWORD_ONLY",
+     "name": "seed"
+    },
+    {
+     "default": "True",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validate"
+    }
+   ]
+  },
+  "summarize_layer_b": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "exact_marginal"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "approx_marginal"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "baseline_marginal"
+    }
+   ]
+  },
+  "total_variation_distance": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "p"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "q"
+    }
+   ]
+  },
+  "validate_minibatch_schedule": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "schedule"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "KEYWORD_ONLY",
+     "name": "num_trials"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "max_iterations"
+    }
+   ]
+  },
+  "validate_observations": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y"
+    }
+   ]
+  },
+  "validate_params": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": "True",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "matlab_compat"
+    }
+   ]
+  },
+  "viterbi_chmm": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y"
+    },
+    {
+     "default": "True",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validate"
+    }
+   ]
+  },
+  "viterbi_exact": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y"
+    },
+    {
+     "default": "True",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validate"
+    }
+   ]
+  },
+  "viterbi_exact_from_equiv": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "equiv"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y"
+    },
+    {
+     "default": "True",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validate"
+    }
+   ]
+  },
+  "viterbi_lsim": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "params"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y"
+    },
+    {
+     "default": "'params'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validate"
+    }
+   ]
+  }
+ },
+ "chmm_lsim.discriminative": {
+  "DiscCounts": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "pi"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "A"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "theta"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "occ"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "n"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "s"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "r"
+    }
+   ]
+  },
+  "DiscOptions": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": "'mmi'",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "objective"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "log_prior"
+    },
+    {
+     "default": "()",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "update_blocks"
+    },
+    {
+     "default": "0.0001",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "prob_floor"
+    },
+    {
+     "default": "0.5",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "mean_margin"
+    },
+    {
+     "default": "0.001",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "var_lo_frac"
+    },
+    {
+     "default": "10.0",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "var_hi_frac"
+    },
+    {
+     "default": "'balanced_accuracy'",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "selection_metric"
+    },
+    {
+     "default": "1",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "positive_class"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "early_stopping_patience"
+    },
+    {
+     "default": "0.0",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "early_stopping_min_delta"
+    },
+    {
+     "default": "<factory>",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "fb_constants"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "iteration_hook"
+    },
+    {
+     "default": "1",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "verbose"
+    },
+    {
+     "default": "'numpy'",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "engine"
+    },
+    {
+     "default": "1",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "n_jobs"
+    },
+    {
+     "default": "'auto'",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "numpy_backend"
+    },
+    {
+     "default": "('cuda',)",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "devices"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "chunk_size"
+    },
+    {
+     "default": "1",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "minibatches"
+    },
+    {
+     "default": "0",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "minibatch_seed"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "state_path"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "log_path"
+    },
+    {
+     "default": "1",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "save_every"
+    },
+    {
+     "default": "'published'",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "mmi_recipe"
+    },
+    {
+     "default": "1.0",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "score_scale"
+    },
+    {
+     "default": "2.0",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "ebw_E"
+    },
+    {
+     "default": "100.0",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "ismooth_tau"
+    },
+    {
+     "default": "'ml'",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "ismooth_backoff"
+    },
+    {
+     "default": "0.0",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "ismooth_tau_discrete"
+    },
+    {
+     "default": "100",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "weak_sense_iters"
+    },
+    {
+     "default": "1e-10",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "weak_sense_tol"
+    }
+   ]
+  },
+  "Domain": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "mu_lo"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "mu_hi"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "var_lo"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "var_hi"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "prob_floor"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "support_pi"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "support_A"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "support_theta"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "support_w"
+    }
+   ]
+  },
+  "NonfiniteStatistics": {
+   "kind": "class",
+   "parameters": null
+  },
+  "NumpyEngine": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "fbc"
+    },
+    {
+     "default": "1",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "n_jobs"
+    },
+    {
+     "default": "'auto'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "backend"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "chunk_size"
+    }
+   ]
+  },
+  "ObjectiveConfig": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "objective"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "log_prior"
+    },
+    {
+     "default": "1.0",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "score_scale"
+    },
+    {
+     "default": "0",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "N_stat"
+    }
+   ]
+  },
+  "OptionError": {
+   "kind": "class",
+   "parameters": null
+  },
+  "TorchEngine": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "fbc"
+    },
+    {
+     "default": "('cuda',)",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "devices"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "chunk_size"
+    },
+    {
+     "default": "'float64'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "dtype"
+    }
+   ]
+  },
+  "TrainResult": {
+   "kind": "class",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "models"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "final_models"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "initial_models"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "history"
+    },
+    {
+     "default": "<factory>",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "diagnostics"
+    }
+   ]
+  },
+  "TrainingError": {
+   "kind": "class",
+   "parameters": null
+  },
+  "at_bounds": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "p"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "dom"
+    }
+   ]
+  },
+  "available_cuda_devices": {
+   "kind": "function",
+   "parameters": []
+  },
+  "balanced_accuracy": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "L"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "label"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "log_prior"
+    },
+    {
+     "default": "1.0",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "score_scale"
+    }
+   ]
+  },
+  "binary_metrics": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "score"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "label"
+    }
+   ]
+  },
+  "build_domain": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y_list"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "p"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "KEYWORD_ONLY",
+     "name": "prob_floor"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "KEYWORD_ONLY",
+     "name": "mean_margin"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "KEYWORD_ONLY",
+     "name": "var_lo_frac"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "KEYWORD_ONLY",
+     "name": "var_hi_frac"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "feature_stats"
+    }
+   ]
+  },
+  "detection_score": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "L"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "log_prior"
+    },
+    {
+     "default": "1.0",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "score_scale"
+    },
+    {
+     "default": "1",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "positive"
+    }
+   ]
+  },
+  "ebw_proposal": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "p"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "num"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "den"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "dom"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "damping_E"
+    },
+    {
+     "default": "()",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "update_blocks"
+    }
+   ]
+  },
+  "em_lsim_discriminative": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "train"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "init_models"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "max_iteration"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validation"
+    },
+    {
+     "default": "False",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "resume"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "VAR_KEYWORD",
+     "name": "options"
+    }
+   ]
+  },
+  "evaluate_models": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "models"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "sets"
+    },
+    {
+     "default": "'val'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "tune_on"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "log_prior"
+    },
+    {
+     "default": "1.0",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "score_scale"
+    },
+    {
+     "default": "1",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "positive"
+    },
+    {
+     "default": "'ba'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "threshold_criterion"
+    },
+    {
+     "default": "'numpy'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "engine"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "VAR_KEYWORD",
+     "name": "engine_opts"
+    }
+   ]
+  },
+  "interpolate": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "p"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "q"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "tau"
+    },
+    {
+     "default": "()",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "update_blocks"
+    }
+   ]
+  },
+  "load_packed_model": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "path"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "name"
+    }
+   ]
+  },
+  "lsim_discriminative_predict": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "models"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "log_prior"
+    },
+    {
+     "default": "1.0",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "score_scale"
+    },
+    {
+     "default": "'numpy'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "engine"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "VAR_KEYWORD",
+     "name": "eng"
+    }
+   ]
+  },
+  "make_engine": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "opts"
+    }
+   ]
+  },
+  "make_options": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "VAR_KEYWORD",
+     "name": "kw"
+    }
+   ]
+  },
+  "objective": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "L"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "label"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "T"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "cfg"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "class_counts"
+    }
+   ]
+  },
+  "packed_to_params": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "d"
+    }
+   ]
+  },
+  "predict": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "models"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "log_prior"
+    },
+    {
+     "default": "1.0",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "score_scale"
+    },
+    {
+     "default": "'numpy'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "engine"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "VAR_KEYWORD",
+     "name": "eng"
+    }
+   ]
+  },
+  "project": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "p"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "dom"
+    }
+   ]
+  },
+  "published_update": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "p"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "num"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "den"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "dom"
+    },
+    {
+     "default": "2.0",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "ebw_E"
+    },
+    {
+     "default": "100.0",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "ismooth_tau"
+    },
+    {
+     "default": "'ml'",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "ismooth_backoff"
+    },
+    {
+     "default": "0.0",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "ismooth_tau_discrete"
+    },
+    {
+     "default": "100",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "weak_sense_iters"
+    },
+    {
+     "default": "1e-10",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "weak_sense_tol"
+    },
+    {
+     "default": "()",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "update_blocks"
+    }
+   ]
+  },
+  "score_metrics": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "L"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "label"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "log_prior"
+    },
+    {
+     "default": "1.0",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "score_scale"
+    },
+    {
+     "default": "1",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "positive"
+    }
+   ]
+  },
+  "sequence_counts": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "structure"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "post"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "Y"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "W"
+    }
+   ]
+  },
+  "threshold_metrics": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "score"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "label"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "threshold"
+    }
+   ]
+  },
+  "train_discriminative": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "train"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "init_models"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "max_iteration"
+    },
+    {
+     "default": "None",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "validation"
+    },
+    {
+     "default": "False",
+     "has_default": true,
+     "kind": "KEYWORD_ONLY",
+     "name": "resume"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "VAR_KEYWORD",
+     "name": "options"
+    }
+   ]
+  },
+  "tune_threshold": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "score"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "label"
+    },
+    {
+     "default": "'ba'",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "criterion"
+    }
+   ]
+  },
+  "weak_sense": {
+   "kind": "function",
+   "parameters": [
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "gnum"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "gden"
+    },
+    {
+     "default": null,
+     "has_default": false,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "p0"
+    },
+    {
+     "default": "100",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "max_iter"
+    },
+    {
+     "default": "1e-10",
+     "has_default": true,
+     "kind": "POSITIONAL_OR_KEYWORD",
+     "name": "tol"
+    }
+   ]
+  }
+ }
+}

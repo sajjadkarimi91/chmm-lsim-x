@@ -52,14 +52,16 @@ sys.path.insert(0, str(Path(__file__).parent / "fixtures"))
 from loader import load_posterior_fixture  # noqa: E402
 
 from chmm_lsim.backends.base import UnsupportedCombination, run_backend
-from chmm_lsim.compat import FbConstants
-from chmm_lsim.em import e_step, em_lsim, finalize_expected_stats, m_step
-from chmm_lsim.inference.sed import forward_backward_sed
-from chmm_lsim.init import initialize_lsim_params
-from chmm_lsim.params import ChannelGMM, LSIMParams
-from chmm_lsim.simulate import simulate_lsim
-from chmm_lsim.structure import LSIMStructure
-from chmm_lsim.validate import ValidationError
+from chmm_lsim.core.constants import FbConstants
+from chmm_lsim.models.lsim.em import e_step, em_lsim, m_step
+from chmm_lsim.learning.em_loop import finalize_expected_stats
+from chmm_lsim.models.lsim.inference.sed import forward_backward_sed
+from chmm_lsim.models.lsim.init import initialize_lsim_params
+from chmm_lsim.emissions.gmm import ChannelGMM
+from chmm_lsim.models.lsim.params import LSIMParams
+from chmm_lsim.models.lsim.simulate import simulate_lsim
+from chmm_lsim.core.structure import LSIMStructure
+from chmm_lsim.core.validate import ValidationError
 
 RTOL, ATOL = 1e-9, 1e-9
 # P3a/P3b's own NumPy-vs-MATLAB tolerance, reused below for the direct
@@ -493,7 +495,7 @@ def test_backward_sed_kernel_validate_all_catches_f_le_h_violation():
 def test_forward_backward_backend_numba_dispatches(fixtures_dir):
     fx = load_posterior_fixture(fixtures_dir, "c3_het_diag__sed")
     structure, params, fbc = _build(fx)
-    from chmm_lsim.inference.registry import forward_backward
+    from chmm_lsim.models.lsim.inference.registry import forward_backward
 
     post = forward_backward(structure, params, fx.trials[0].Y, fbc, backend="numba")
     direct = run_backend("numba", "sed", structure, params, fx.trials[0].Y, fbc)

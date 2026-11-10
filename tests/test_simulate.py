@@ -13,10 +13,12 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-from chmm_lsim.params import ChannelGMM, LSIMParams
-from chmm_lsim.simulate import select_p, simulate_lsim
-from chmm_lsim.structure import LSIMStructure
-from chmm_lsim.validate import ValidationError
+from chmm_lsim.emissions.gmm import ChannelGMM
+from chmm_lsim.models.lsim.params import LSIMParams
+from chmm_lsim.core.sampling import select_p
+from chmm_lsim.models.lsim.simulate import simulate_lsim
+from chmm_lsim.core.structure import LSIMStructure
+from chmm_lsim.core.validate import ValidationError
 
 
 def _heterogeneous_model():

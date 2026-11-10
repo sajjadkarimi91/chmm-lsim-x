@@ -36,12 +36,12 @@ import pytest
 sys.path.insert(0, str(Path(__file__).parent / "fixtures"))
 from loader import load_posterior_fixture  # noqa: E402
 
-from chmm_lsim.compat import FbConstants  # noqa: E402
-from chmm_lsim.inference import forward_backward, get_inference  # noqa: E402
-from chmm_lsim.inference.poise import _REFINE_W0, forward_backward_poise, poise_backward_constants  # noqa: E402
-from chmm_lsim.inference.sed import forward_backward_sed  # noqa: E402
-from chmm_lsim.params import LSIMParams  # noqa: E402
-from chmm_lsim.structure import LSIMStructure  # noqa: E402
+from chmm_lsim.core.constants import FbConstants  # noqa: E402
+from chmm_lsim.models.lsim.inference.registry import forward_backward, get_inference  # noqa: E402
+from chmm_lsim.models.lsim.inference.poise import _REFINE_W0, forward_backward_poise, poise_backward_constants  # noqa: E402
+from chmm_lsim.models.lsim.inference.sed import forward_backward_sed  # noqa: E402
+from chmm_lsim.models.lsim.params import LSIMParams  # noqa: E402
+from chmm_lsim.core.structure import LSIMStructure  # noqa: E402
 
 RTOL, ATOL = 1e-8, 1e-9
 LOGLIK_RTOL, LOGLIK_ATOL = 1e-10, 1e-8
@@ -292,7 +292,7 @@ def test_poise_kernel_rejects_other_variants(fixtures_dir):
 def test_other_kernels_reject_poise_constants(fixtures_dir):
     fx = load_posterior_fixture(fixtures_dir, "c3_het_diag__poise")
     structure, params, fbc = _build(fx)
-    from chmm_lsim.inference.fast import forward_backward_fast
+    from chmm_lsim.models.lsim.inference.fast import forward_backward_fast
 
     with pytest.raises(ValueError, match="variant='sed'"):
         forward_backward_sed(structure, params, fx.trials[0].Y, fbc)
@@ -340,7 +340,7 @@ def test_validate_all_accepts_valid_fixtures_and_off_skips_checks(fixtures_dir):
 def test_validate_all_catches_a_corrupted_refined_gamma(fixtures_dir, monkeypatch):
     """The refinement pass runs its own block-sum check under `validate="all"`:
     corrupting the propagated slice must be reported, not silently returned."""
-    import chmm_lsim.inference.poise as poise_mod
+    import chmm_lsim.models.lsim.inference.poise as poise_mod
 
     fx = load_posterior_fixture(fixtures_dir, "c3_het_diag__poise_refined")
     structure, params, fbc = _build(fx)
@@ -355,7 +355,7 @@ def test_validate_all_catches_a_corrupted_refined_gamma(fixtures_dir, monkeypatc
         return out
 
     monkeypatch.setattr(poise_mod, "block_sum", corrupt)
-    from chmm_lsim.validate import ValidationError
+    from chmm_lsim.core.validate import ValidationError
 
     with pytest.raises(ValidationError, match="gamma"):
         forward_backward_poise(structure, params, fx.trials[0].Y, fbc, validate="all")

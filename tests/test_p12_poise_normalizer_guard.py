@@ -43,12 +43,13 @@ import pytest
 sys.path.insert(0, str(Path(__file__).parent / "fixtures"))
 
 from chmm_lsim.backends.base import run_backend  # noqa: E402
-from chmm_lsim.compat import FbConstants  # noqa: E402
-from chmm_lsim.em import e_step, em_lsim, em_lsim_minibatch_train  # noqa: E402
-from chmm_lsim.inference import forward_backward  # noqa: E402
-from chmm_lsim.params import ChannelGMM, LSIMParams  # noqa: E402
-from chmm_lsim.structure import LSIMStructure  # noqa: E402
-from chmm_lsim.validate import ValidationError  # noqa: E402
+from chmm_lsim.core.constants import FbConstants  # noqa: E402
+from chmm_lsim.models.lsim.em import e_step, em_lsim, em_lsim_minibatch_train  # noqa: E402
+from chmm_lsim.models.lsim.inference.registry import forward_backward  # noqa: E402
+from chmm_lsim.emissions.gmm import ChannelGMM  # noqa: E402
+from chmm_lsim.models.lsim.params import LSIMParams  # noqa: E402
+from chmm_lsim.core.structure import LSIMStructure  # noqa: E402
+from chmm_lsim.core.validate import ValidationError  # noqa: E402
 
 REFINEMENTS = [False, True]
 CPU_BACKENDS = ["numpy", "numba", "torch"]
@@ -297,7 +298,7 @@ def test_refinement_stage_guard_is_reachable_and_reports_its_own_stage(monkeypat
     are guarded. The raw stage is what the construction above trips; this pins
     the refinement stage's own message by feeding `_refine` a propagated slice
     that collapses, which no raw-stage failure can mask."""
-    import chmm_lsim.inference.poise as poise_mod
+    import chmm_lsim.models.lsim.inference.poise as poise_mod
 
     structure, params, Y = _healthy_model()
     fbc = _poise(True)
@@ -318,7 +319,7 @@ def test_refinement_stage_guard_is_reachable_and_reports_its_own_stage(monkeypat
 
 def test_guard_helper_accepts_finite_positive_and_rejects_each_bad_value():
     """The helper's own contract, independent of any recursion."""
-    from chmm_lsim.inference.poise import check_channel_normalizer
+    from chmm_lsim.models.lsim.inference.poise import check_channel_normalizer
 
     check_channel_normalizer(np.array([1.0, 1e-300]), 0, stage="unit")
     for bad in (0.0, -1.0, np.nan, np.inf, -np.inf):
@@ -327,7 +328,7 @@ def test_guard_helper_accepts_finite_positive_and_rejects_each_bad_value():
 
 
 def test_guard_message_names_the_sequence_when_one_is_given():
-    from chmm_lsim.inference.poise import check_channel_normalizer
+    from chmm_lsim.models.lsim.inference.poise import check_channel_normalizer
 
     with pytest.raises(ValidationError, match="sequence 4, channel 0"):
         check_channel_normalizer(np.array([0.0]), 2, stage="unit", sequence=4)

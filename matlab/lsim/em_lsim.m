@@ -2,9 +2,16 @@
 
 function [pi_0_lsim , coupling_tetha_IM , transition_matrices_IM ,  gmm_para_lsim ,  AIC, log_likelyhood, BIC, pi_steady] = em_lsim( channels_observations , channel_num_states , num_gmm_component , max_itration , extra, init_model)
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% SED inference
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%EM_LSIM  Maximum-likelihood EM for an LSIM with GMM emissions.
+%
+%   [pi_0_lsim, coupling_tetha_IM, transition_matrices_IM, gmm_para_lsim, AIC, log_likelyhood, BIC, pi_steady] = ...
+%       em_lsim(channels_observations, channel_num_states, num_gmm_component, max_itration, extra, init_model)
+%
+% E-step: forward_backward_lsim_kernel with the recursion extra.fb_constants.variant
+% (default raw POISE, see lsim_fb_constants). M-step: transitions, coupling, initial
+% probabilities and the GMM emission parameters (diagonal or full covariance,
+% extra.sigma_diag). extra also needs .plot and .check_convergence; init_model is
+% optional (.pi_0_lsim, .coupling_tetha_IM, .transition_matrices_IM_cell, .gmm_para_lsim).
 
 % Y is observations which is a cell size Cx1  where Y{c,1} is the c'th subsystem observations
 

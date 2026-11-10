@@ -26,6 +26,13 @@ Execution backends: NumPy (default), numba (``backend="numba"``, needs
 batched API `forward_backward_batch`, needs ``chmm-lsim[torch]``). Optional
 dependencies are imported lazily, so ``import chmm_lsim`` only needs NumPy and
 SciPy.
+
+The names listed in ``chmm_lsim.__all__`` and the ``chmm_lsim.discriminative``
+package are the public API. The subpackages (``core``, ``emissions``,
+``models``, ``learning``, ``backends``) are internal and may be reorganized;
+the extension points are `register_inference` (new LSIM recursions),
+`register_backend` (execution backends) and
+``chmm_lsim.emissions.register_emission_model`` (emission models).
 """
 
 from chmm_lsim.backends.base import (
@@ -37,7 +44,48 @@ from chmm_lsim.backends.base import (
     register_backend,
     run_backend,
 )
-from chmm_lsim.chmm import (
+from chmm_lsim.core.constants import FbConstants
+from chmm_lsim.core.diagnostics import (
+    LayerBSummary,
+    marginalize_joint_to_channels,
+    per_channel_total_variation,
+    summarize_layer_b,
+    total_variation_distance,
+)
+from chmm_lsim.core.joint_state import (
+    MAX_JOINT_MIXTURE_COMPONENTS,
+    MAX_JOINT_STATES,
+    EquivalentModelTooLargeError,
+    joint_state_from_index,
+    joint_state_index,
+    scaled_forward_backward,
+)
+from chmm_lsim.core.sampling import select_p
+from chmm_lsim.core.serialization import SerializationError
+from chmm_lsim.core.structure import LSIMStructure
+from chmm_lsim.core.validate import ValidationError, validate_observations
+from chmm_lsim.core.viterbi import ViterbiResult
+from chmm_lsim.emissions import compute_emissions, gmm_pdf_diag, gmm_pdf_full
+from chmm_lsim.emissions.gmm import ChannelExpectedStats, ChannelGMM, compute_global_nanvar, finalize_channel_stats, merge_channel_stats, repair_covariance
+from chmm_lsim.emissions.gmm_init import InitialisationError
+from chmm_lsim.learning.em_loop import (
+    EmResult,
+    ExpectedStats,
+    TrialExecutionError,
+    apply_left2right_pi0_smoothing,
+    finalize_expected_stats,
+    merge_expected_stats,
+)
+from chmm_lsim.learning.minibatch import (
+    MinibatchEmResult,
+    MinibatchSchedule,
+    MinibatchTrainingResult,
+    MinibatchUpdate,
+    RobustConvergence,
+    generate_minibatch_schedule,
+    validate_minibatch_schedule,
+)
+from chmm_lsim.models.chmm import (
     CHMMJointModel,
     CHMMParams,
     CHMMPosterior,
@@ -51,65 +99,33 @@ from chmm_lsim.chmm import (
     simulate_chmm,
     viterbi_chmm,
 )
-from chmm_lsim.compat import FbConstants
-from chmm_lsim.diagnostics import (
-    LayerBSummary,
-    joint_log_probability,
-    marginalize_joint_to_channels,
-    per_channel_total_variation,
-    summarize_layer_b,
-    total_variation_distance,
-)
-from chmm_lsim.em import (
-    ChannelExpectedStats,
-    EmResult,
-    ExpectedStats,
-    MinibatchEmResult,
-    MinibatchSchedule,
-    MinibatchTrainingResult,
-    RobustConvergence,
-    MinibatchUpdate,
-    TrialExecutionError,
-    apply_left2right_pi0_smoothing,
+from chmm_lsim.models.lsim.diagnostics import joint_log_probability
+from chmm_lsim.models.lsim.em import (
     compute_aic_bic,
-    compute_global_nanvar,
     e_step,
     em_lsim,
     em_lsim_minibatch,
     em_lsim_minibatch_train,
-    finalize_channel_stats,
-    finalize_expected_stats,
-    generate_minibatch_schedule,
     m_step,
-    merge_channel_stats,
-    merge_expected_stats,
-    repair_covariance,
-    validate_minibatch_schedule,
 )
-from chmm_lsim.emissions import compute_emissions, gmm_pdf_diag, gmm_pdf_full
-from chmm_lsim.equivalent import (
-    MAX_JOINT_MIXTURE_COMPONENTS,
-    MAX_JOINT_STATES,
-    EquivalentHMM,
-    EquivalentModelTooLargeError,
-    build_equivalent_hmm,
-    exact_posterior,
-    joint_state_from_index,
-    joint_state_index,
-    scaled_forward_backward,
+from chmm_lsim.models.lsim.equivalent import EquivalentHMM, build_equivalent_hmm, exact_posterior
+from chmm_lsim.models.lsim.inference import (
+    Diagnostics,
+    Posterior,
+    forward_backward,
+    forward_backward_fast,
+    forward_backward_from_emissions,
+    forward_backward_poise,
+    forward_backward_sed,
+    forward_loglik_from_emissions,
+    get_inference,
+    register_inference,
 )
-from chmm_lsim.init import InitialisationError, initialize_lsim_params
-from chmm_lsim.serialization import SerializationError, load_lsim_params, save_lsim_params
-from chmm_lsim.inference.base import Diagnostics, Posterior
-from chmm_lsim.inference.fast import forward_backward_fast
-from chmm_lsim.inference.poise import forward_backward_poise
-from chmm_lsim.inference.registry import forward_backward, get_inference, register_inference
-from chmm_lsim.inference.sed import forward_backward_sed
-from chmm_lsim.params import ChannelGMM, LSIMParams
-from chmm_lsim.simulate import select_p, simulate_lsim
-from chmm_lsim.structure import LSIMStructure
-from chmm_lsim.validate import ValidationError, validate_observations, validate_params
-from chmm_lsim.viterbi import ViterbiResult, viterbi_exact, viterbi_exact_from_equiv, viterbi_lsim
+from chmm_lsim.models.lsim.init import initialize_lsim_params
+from chmm_lsim.models.lsim.params import LSIMParams, validate_params
+from chmm_lsim.models.lsim.serialization import load_lsim_params, save_lsim_params
+from chmm_lsim.models.lsim.simulate import simulate_lsim
+from chmm_lsim.models.lsim.viterbi import viterbi_exact, viterbi_exact_from_equiv, viterbi_lsim
 
 __version__ = "1.0.0"
 
@@ -139,6 +155,8 @@ __all__ = [
     "forward_backward_sed",
     "forward_backward_fast",
     "forward_backward_poise",
+    "forward_backward_from_emissions",
+    "forward_loglik_from_emissions",
     "ExpectedStats",
     "ChannelExpectedStats",
     "EmResult",
@@ -223,7 +241,7 @@ _DISCRIMINATIVE_NAMES = frozenset({"em_lsim_discriminative", "lsim_discriminativ
 
 def __getattr__(name: str):
     if name in _DISCRIMINATIVE_NAMES:
-        from chmm_lsim import discriminative
+        from chmm_lsim.learning import discriminative
 
         return getattr(discriminative, name)
     if name in _TORCH_BATCHED_NAMES:

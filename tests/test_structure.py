@@ -5,7 +5,7 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-from chmm_lsim.structure import LSIMStructure
+from chmm_lsim.core.structure import LSIMStructure
 
 
 def test_derived_arrays_correct():

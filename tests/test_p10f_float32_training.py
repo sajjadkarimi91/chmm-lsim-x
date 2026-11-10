@@ -16,14 +16,16 @@ import pytest
 
 torch = pytest.importorskip("torch")
 
-import chmm_lsim.em as em  # noqa: E402
+import chmm_lsim.emissions.gmm as gmm_mod  # noqa: E402
+import chmm_lsim.models.lsim.em as em  # noqa: E402
 from chmm_lsim.backends.base import UnsupportedCombination  # noqa: E402
 from chmm_lsim.backends.torch_batched import forward_backward_batch  # noqa: E402
-from chmm_lsim.compat import FbConstants  # noqa: E402
-from chmm_lsim.params import ChannelGMM, LSIMParams  # noqa: E402
-from chmm_lsim.simulate import simulate_lsim  # noqa: E402
-from chmm_lsim.structure import LSIMStructure  # noqa: E402
-from chmm_lsim.validate import ValidationError  # noqa: E402
+from chmm_lsim.core.constants import FbConstants  # noqa: E402
+from chmm_lsim.emissions.gmm import ChannelGMM  # noqa: E402
+from chmm_lsim.models.lsim.params import LSIMParams  # noqa: E402
+from chmm_lsim.models.lsim.simulate import simulate_lsim  # noqa: E402
+from chmm_lsim.core.structure import LSIMStructure  # noqa: E402
+from chmm_lsim.core.validate import ValidationError  # noqa: E402
 
 
 def _workload(C=6, M=5, n=400, T=10, seed=0):
@@ -59,7 +61,7 @@ def test_float32_training_is_rejected_before_any_work(driver, device, monkeypatc
         raise AssertionError("no E-step/validation may run before the float32 rejection")
 
     monkeypatch.setattr(em, "e_step", boom)
-    monkeypatch.setattr(em, "compute_global_nanvar", boom)
+    monkeypatch.setattr(gmm_mod, "compute_global_nanvar", boom)
     with pytest.raises(UnsupportedCombination, match="float32"):
         DRIVERS[driver](st, p, Y, backend="torch", backend_options={"device": device, "dtype": "float32"})
 

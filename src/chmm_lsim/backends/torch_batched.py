@@ -69,8 +69,8 @@ directly (`Posterior.loglik` is always the true, unscaled value, per its own
 docstring). `alpha`/`beta`/`gamma`/`scale` are provably invariant to this
 per-channel-per-timestep rescaling (the same multiplicative constant cancels
 in every ratio the recursion ever forms), and the `B_comp/B` responsibility
-ratio `em.py`'s M-step actually uses is invariant too, for the same reason --
-confirmed directly against `emissions.py`'s linear-domain NumPy computation
+ratio the GMM M-step (`emissions/gmm.py`) actually uses is invariant too, for the same reason --
+confirmed directly against `emissions/gmm.py`'s linear-domain NumPy computation
 via `B_raw()`/`B_comp` reconstruction, not merely asserted.
 
 **`mode="stats"` reduces genuinely on-device.** The batched forward-backward
@@ -78,7 +78,7 @@ recursion runs fully batched, on device, for the whole chunk at once
 (`e_step(..., backend="torch")` calls this *once* per chunk, never once per
 sequence) -- and, since a review round found an earlier version of this
 module transferred every chunk's full `alpha`/`beta`/`gamma`/`B`/`B_comp` to
-CPU and reduced them there (one sequence at a time, via `em.py`'s own
+CPU and reduced them there (one sequence at a time, via the GMM
 `_accumulate_channel_trial`) despite documenting that as "device-reduction,"
 `_reduce_chunk_stats_device` now performs the *entire* reduction --
 `zeta`/`gamma_first`/`gamma_sum`/`T_all`/`n_transitions` and every
@@ -87,7 +87,7 @@ CPU and reduced them there (one sequence at a time, via `em.py`'s own
 covariance `pairwise_Q`/`M`/`C` + `u_pairwise_Q`/`M`/`C` triples, `n_obs`/
 `welford_mean`/`M2`, `allzero_mean`/`M2`) -- as Torch tensor ops on-device,
 via `_weighted_batch_torch`/`_pairwise_batch_torch` (direct central-moment
-ports of `em._welford_batch`/`_pairwise_batch`, batched over `(batch,
+ports of `emissions.gmm._welford_batch`/`_pairwise_batch`, batched over `(batch,
 time)` jointly instead of one sequence's own `T` axis at a time -- never a
 raw `Σy²` moment, preserving the same P4-verified large-offset stability).
 Only the small, fixed-size *reduced* dict per chunk ever reaches CPU;
@@ -118,7 +118,14 @@ from dataclasses import dataclass, field
 import numpy as np
 from numpy.typing import NDArray
 
-from chmm_lsim.backends.base import BackendCapabilities, MissingBackendDependency, UnsupportedCombination, register_backend
+from chmm_lsim.backends.base import (
+    BackendCapabilities,
+    MissingBackendDependency,
+    UnsupportedCombination,
+    check_capability,
+    emission_model_name,
+    register_backend,
+)
 
 try:
     import torch
@@ -129,18 +136,14 @@ except ImportError as exc:
         "metadata declares support for Python 3.10-3.15, covering this project's 3.12-3.14 target)"
     ) from exc
 
-from chmm_lsim.compat import FbConstants
-from chmm_lsim.em import (
-    _LOW_MASS_GAMMA_THRESHOLD,
-    ChannelExpectedStats,
-    ExpectedStats,
-    merge_expected_stats,
-)
-from chmm_lsim.inference.base import Diagnostics, Posterior
-from chmm_lsim.params import ChannelGMM, LSIMParams
-from chmm_lsim.structure import LSIMStructure
-from chmm_lsim.inference.poise import _REFINE_W0 as _POISE_REFINE_W0
-from chmm_lsim.validate import ValidationError, _is_prevalidated, check_structure_matches, validate_observation_list, validate_observations
+from chmm_lsim.core.constants import FbConstants
+from chmm_lsim.emissions.gmm import _LOW_MASS_GAMMA_THRESHOLD, ChannelExpectedStats, ChannelGMM
+from chmm_lsim.learning.em_loop import ExpectedStats, merge_expected_stats
+from chmm_lsim.models.lsim.inference.base import Diagnostics, Posterior
+from chmm_lsim.models.lsim.params import LSIMParams
+from chmm_lsim.core.structure import LSIMStructure
+from chmm_lsim.models.lsim.inference.poise import _REFINE_W0 as _POISE_REFINE_W0
+from chmm_lsim.core.validate import ValidationError, _is_prevalidated, check_structure_matches, validate_observation_list, validate_observations
 
 _LOG_2PI = math.log(2 * math.pi)
 _BLOCK_SUM_ATOL = 1e-8  # matches inference.sed._assert_close_to_one (rtol=0)
@@ -255,7 +258,7 @@ class TorchKernel:
         absolute effect), but an exactly-zero `pi_0` entry -- routine after EM
         updates -- gave exact-zero `alpha`/`gamma` on Torch instead of NumPy's
         smoothed values, and a different transition row downstream."""
-        from chmm_lsim.inference.sed import _regularize_pi0
+        from chmm_lsim.models.lsim.inference.sed import _regularize_pi0
 
         def t(arr: NDArray) -> "torch.Tensor":
             return torch.as_tensor(np.ascontiguousarray(arr), dtype=dtype, device=device)
@@ -1478,17 +1481,17 @@ def estimate_chunk_size(
 
 
 # ==========================================================================
-# mode="stats": one chunk's raw ExpectedStats, via em.py's own accumulator.
+# mode="stats": one chunk's raw ExpectedStats, via the GMM accumulator (emissions/gmm.py).
 # ==========================================================================
 
 
 def _weighted_batch_torch(weight: "torch.Tensor", value: "torch.Tensor") -> tuple["torch.Tensor", "torch.Tensor", "torch.Tensor"]:
-    """Direct Torch port of `em._welford_batch`, reducing over *every*
+    """Direct Torch port of `emissions.gmm._welford_batch`, reducing over *every*
     trailing axis after the leading "quantity" axis at once (e.g. `(d_c,
     Bn, T)` -> `(d_c,)`) -- one call handles a whole chunk's worth of
     sequences and timesteps together, not one sequence at a time. Central,
     not raw, moments throughout (`Σw(y-mean)²`, never `Σwy²`), matching
-    `em.py`'s own P4-verified stability requirement exactly, just batched
+    the NumPy accumulator's stability requirement exactly, just batched
     wider. `weight`/`value` must already agree in shape; `value` must be
     NaN-free at every position `weight` doesn't count (zero-filled)."""
     reduce_dims = tuple(range(1, weight.ndim))
@@ -1504,7 +1507,7 @@ def _weighted_batch_torch(weight: "torch.Tensor", value: "torch.Tensor") -> tupl
 def _pairwise_batch_torch(
     weight: "torch.Tensor", o: "torch.Tensor", Y_masked: "torch.Tensor"
 ) -> tuple["torch.Tensor", "torch.Tensor", "torch.Tensor"]:
-    """Direct Torch port of `em._pairwise_batch`: `weight` is `(Bn,T)`, `o`/
+    """Direct Torch port of `emissions.gmm._pairwise_batch`: `weight` is `(Bn,T)`, `o`/
     `Y_masked` are `(d_c,Bn,T)` -- reduces over `(Bn,T)` jointly (flattened),
     for a whole chunk at once. `Q[i,j]=Σ w·o_i·o_j`, `M[i,j]` the weighted
     mean of `y_i` under that joint mask, `C[i,j]=Σ w·o_i·o_j·(y_i-M[i,j])·
@@ -1837,6 +1840,8 @@ def forward_backward_batch(
         raise ValueError(f"validate must be one of ('params','all','off'), got {validate!r}")
 
     check_structure_matches(structure, params)
+    # The torch kernels implement the built-in variants and Gaussian-mixture emissions only.
+    check_capability("torch", variant=fb_constants.variant, mode=mode, batched=True, emission_model=emission_model_name(params))
     torch_device = _resolve_device(device)
     torch_dtype = _resolve_dtype(dtype)
     _check_device_dtype_combination(torch_device, torch_dtype)
@@ -1973,6 +1978,7 @@ register_backend(
         batched=True,
         gpu=True,
         sed_methods=("optimized",),
+        emission_models=("gmm",),
     ),
     _run_torch,
     loglik_runner=_loglik_torch,

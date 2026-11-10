@@ -1034,8 +1034,8 @@ def validate_p6_fixture(fx: "P6Fixture") -> None:
         # checks by hand -- only attempted once every shape/dtype check above
         # has passed, since from_packed itself assumes well-formed inputs.
         if not errs:
-            from chmm_lsim.params import LSIMParams
-            from chmm_lsim.structure import LSIMStructure
+            from chmm_lsim.models.lsim.params import LSIMParams
+            from chmm_lsim.core.structure import LSIMStructure
 
             packed_structure = LSIMStructure(
                 tuple(int(x) for x in fx.channel_num_states),
@@ -1410,8 +1410,8 @@ def _validate_p10a_body(fx: "P10aSchedulingFixture", errs: list[str]) -> None:
     if _check_shape(errs, "returned_best_pi_steady", fx.returned_best_pi_steady, (S,)) and _check_dtype(errs, "returned_best_pi_steady", fx.returned_best_pi_steady, "f"):
         _check_finite(errs, "returned_best_pi_steady", fx.returned_best_pi_steady)
 
-    from chmm_lsim.params import LSIMParams
-    from chmm_lsim.structure import LSIMStructure
+    from chmm_lsim.models.lsim.params import LSIMParams
+    from chmm_lsim.core.structure import LSIMStructure
 
     structure = LSIMStructure(
         channel_state_num=tuple(fx.channel_num_states.tolist()),
@@ -1530,7 +1530,7 @@ def _validate_p10a_body(fx: "P10aSchedulingFixture", errs: list[str]) -> None:
         # reimplementing the formula here, and require tight agreement with
         # what update 0 actually used.
         if fx.raw_init_pi_0.shape == (S,) and fx.updates_pi_0_in.shape == (n_updates, S):
-            from chmm_lsim.em import apply_left2right_pi0_smoothing
+            from chmm_lsim.learning.em_loop import apply_left2right_pi0_smoothing
 
             recomputed_pi0_in0 = apply_left2right_pi0_smoothing(fx.raw_init_pi_0, structure, left2right=False)
             if not np.allclose(recomputed_pi0_in0, fx.updates_pi_0_in[0], rtol=0, atol=1e-12):
@@ -1697,7 +1697,7 @@ def _validate_p10a_body(fx: "P10aSchedulingFixture", errs: list[str]) -> None:
         # every trial in the dataset, not a per-minibatch T_all), structure,
         # and sigma_diag, using the same compute_aic_bic em_lsim.m's own
         # formula and P4's own EM training share.
-        from chmm_lsim.em import compute_aic_bic
+        from chmm_lsim.models.lsim.em import compute_aic_bic
 
         global_T_all = int(fx.length_observation.sum())
         for itr in range(max_itration):

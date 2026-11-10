@@ -58,21 +58,14 @@ import pytest
 sys.path.insert(0, str(Path(__file__).parent / "fixtures"))
 from loader import P10A_SCENARIO_IDS, load_em_trace_fixture, load_p10a_scheduling_fixture  # noqa: E402
 
-from chmm_lsim.compat import FbConstants
-from chmm_lsim.em import (
-    MinibatchSchedule,
-    TrialExecutionError,
-    compute_global_nanvar,
-    e_step,
-    em_lsim,
-    em_lsim_minibatch,
-    finalize_expected_stats,
-    generate_minibatch_schedule,
-    m_step,
-    validate_minibatch_schedule,
-)
-from chmm_lsim.params import ChannelGMM, LSIMParams
-from chmm_lsim.structure import LSIMStructure
+from chmm_lsim.core.constants import FbConstants
+from chmm_lsim.learning.minibatch import MinibatchSchedule, generate_minibatch_schedule, validate_minibatch_schedule
+from chmm_lsim.learning.em_loop import TrialExecutionError, finalize_expected_stats
+from chmm_lsim.emissions.gmm import compute_global_nanvar
+from chmm_lsim.models.lsim.em import e_step, em_lsim, em_lsim_minibatch, m_step
+from chmm_lsim.emissions.gmm import ChannelGMM
+from chmm_lsim.models.lsim.params import LSIMParams
+from chmm_lsim.core.structure import LSIMStructure
 
 EXECUTORS = ("thread", "process")
 
@@ -871,7 +864,8 @@ def test_ordinary_full_batch_m_step_unaffected_by_zero_transition_policy(fixture
     caller's behavior when n_transitions>0 -- confirmed by re-running the
     existing P4 em-trace gate with and without an (irrelevant, on this
     path) params_in argument and getting byte-identical results."""
-    from chmm_lsim.em import e_step, finalize_expected_stats, m_step
+    from chmm_lsim.models.lsim.em import e_step, m_step
+    from chmm_lsim.learning.em_loop import finalize_expected_stats
 
     fx = load_em_trace_fixture(fixtures_dir, "c3_het_diag")
     structure = LSIMStructure(
@@ -892,7 +886,8 @@ def test_ordinary_full_batch_m_step_unaffected_by_zero_transition_policy(fixture
 
 
 def test_m_step_zero_transitions_without_params_in_raises():
-    from chmm_lsim.em import e_step, finalize_expected_stats, m_step
+    from chmm_lsim.models.lsim.em import e_step, m_step
+    from chmm_lsim.learning.em_loop import finalize_expected_stats
 
     rng = np.random.default_rng(22)
     structure, params = _toy_model(rng)
@@ -1063,7 +1058,7 @@ def test_compute_global_nanvar_never_calls_inference(monkeypatch):
     compute_global_nanvar still returns a correct, finite result."""
     import concurrent.futures as cf
 
-    import chmm_lsim.em as em_mod
+    import chmm_lsim.models.lsim.em as em_mod
     from chmm_lsim.backends import base as backends_base
 
     def _boom(*a, **k):

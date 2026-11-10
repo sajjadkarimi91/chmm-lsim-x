@@ -32,14 +32,16 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-from chmm_lsim.compat import FbConstants
-from chmm_lsim.diagnostics import per_channel_total_variation
+from chmm_lsim.core.constants import FbConstants
+from chmm_lsim.core.diagnostics import per_channel_total_variation
 from chmm_lsim.emissions import compute_emissions
-from chmm_lsim.equivalent import build_equivalent_hmm, exact_posterior, scaled_forward_backward
-from chmm_lsim.inference.sed import forward_backward_sed
-from chmm_lsim.params import ChannelGMM, LSIMParams
-from chmm_lsim.simulate import simulate_lsim
-from chmm_lsim.structure import LSIMStructure
+from chmm_lsim.models.lsim.equivalent import build_equivalent_hmm, exact_posterior
+from chmm_lsim.core.joint_state import scaled_forward_backward
+from chmm_lsim.models.lsim.inference.sed import forward_backward_sed
+from chmm_lsim.emissions.gmm import ChannelGMM
+from chmm_lsim.models.lsim.params import LSIMParams
+from chmm_lsim.models.lsim.simulate import simulate_lsim
+from chmm_lsim.core.structure import LSIMStructure
 
 SED_TV_CEILING = 0.05  # ~4x the measured worst-case mean (1.3e-2)
 
@@ -89,7 +91,7 @@ def test_sed_closer_to_exact_than_independent_channel_baseline(seed):
 
     equiv = build_equivalent_hmm(structure, params)
     gamma_exact, _ = exact_posterior(equiv, Y)
-    from chmm_lsim.diagnostics import marginalize_joint_to_channels
+    from chmm_lsim.core.diagnostics import marginalize_joint_to_channels
 
     marginal_exact = marginalize_joint_to_channels(equiv.dims, gamma_exact)
 
@@ -113,7 +115,7 @@ def test_measured_mean_tv_across_seeds_reported():
     visible in the assertion message on failure, and the reported numbers in
     this module's own docstring stay honest without needing to be
     hand-recomputed."""
-    from chmm_lsim.diagnostics import marginalize_joint_to_channels
+    from chmm_lsim.core.diagnostics import marginalize_joint_to_channels
 
     sed_tvs, baseline_tvs = [], []
     for seed in range(8):

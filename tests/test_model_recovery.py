@@ -31,13 +31,14 @@ import numpy as np
 import pytest
 from scipy.optimize import linear_sum_assignment
 
-from chmm_lsim.compat import FbConstants
-from chmm_lsim.em import em_lsim
-from chmm_lsim.inference.sed import forward_backward_sed
-from chmm_lsim.init import initialize_lsim_params
-from chmm_lsim.params import ChannelGMM, LSIMParams
-from chmm_lsim.simulate import simulate_lsim
-from chmm_lsim.structure import LSIMStructure
+from chmm_lsim.core.constants import FbConstants
+from chmm_lsim.models.lsim.em import em_lsim
+from chmm_lsim.models.lsim.inference.sed import forward_backward_sed
+from chmm_lsim.models.lsim.init import initialize_lsim_params
+from chmm_lsim.emissions.gmm import ChannelGMM
+from chmm_lsim.models.lsim.params import LSIMParams
+from chmm_lsim.models.lsim.simulate import simulate_lsim
+from chmm_lsim.core.structure import LSIMStructure
 
 try:
     import sklearn  # noqa: F401

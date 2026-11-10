@@ -98,15 +98,15 @@ except ImportError as exc:
     ) from exc
 
 from chmm_lsim.backends.numpy_ import build_W
-from chmm_lsim.compat import FbConstants
+from chmm_lsim.core.constants import FbConstants
 from chmm_lsim.emissions import compute_emissions
-from chmm_lsim.inference.base import Diagnostics, Posterior
-from chmm_lsim.inference.poise import _REFINE_W0 as _POISE_REFINE_W0
-from chmm_lsim.inference.poise import poise_backward_constants
-from chmm_lsim.inference.sed import _regularize_pi0
-from chmm_lsim.params import LSIMParams
-from chmm_lsim.structure import LSIMStructure
-from chmm_lsim.validate import ValidationError, check_structure_matches, validate_observations
+from chmm_lsim.models.lsim.inference.base import Diagnostics, Posterior
+from chmm_lsim.models.lsim.inference.poise import _REFINE_W0 as _POISE_REFINE_W0
+from chmm_lsim.models.lsim.inference.poise import poise_backward_constants
+from chmm_lsim.models.lsim.inference.sed import _regularize_pi0
+from chmm_lsim.models.lsim.params import LSIMParams
+from chmm_lsim.core.structure import LSIMStructure
+from chmm_lsim.core.validate import ValidationError, check_structure_matches, validate_observations
 
 _BLOCK_SUM_ATOL = 1e-8  # matches inference.sed._assert_close_to_one (rtol=0)
 
@@ -853,6 +853,7 @@ register_backend(
         batched=False,
         gpu=False,
         sed_methods=("optimized",),
+        emission_models=("gmm",),
     ),
     _run_numba,
     loglik_runner=_loglik_numba,

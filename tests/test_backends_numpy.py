@@ -5,7 +5,7 @@ from __future__ import annotations
 import numpy as np
 
 from chmm_lsim.backends.numpy_ import block_sum, broadcast_block, build_coupling_gather, build_W
-from chmm_lsim.structure import LSIMStructure
+from chmm_lsim.core.structure import LSIMStructure
 
 
 def test_block_sum_1d():

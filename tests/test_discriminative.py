@@ -13,15 +13,15 @@ import pytest
 
 scipy_io = pytest.importorskip("scipy.io")
 
-from chmm_lsim.compat import FbConstants  # noqa: E402
+from chmm_lsim.core.constants import FbConstants  # noqa: E402
 from chmm_lsim.discriminative import (  # noqa: E402
     NumpyEngine, ObjectiveConfig, OptionError, at_bounds, build_domain, ebw_proposal,
     make_options, objective, packed_to_params, predict, project, published_update, train_discriminative, weak_sense,
     em_lsim_discriminative, lsim_discriminative_predict,
 )
-from chmm_lsim.discriminative.counts import counts_from_packed_struct  # noqa: E402
-from chmm_lsim.discriminative.domain import Domain  # noqa: E402
-from chmm_lsim.discriminative.options import default_max_iteration  # noqa: E402
+from chmm_lsim.learning.discriminative.counts import counts_from_packed_struct  # noqa: E402
+from chmm_lsim.learning.discriminative.domain import Domain  # noqa: E402
+from chmm_lsim.learning.discriminative.options import default_max_iteration  # noqa: E402
 
 FIX = Path(__file__).parent / "fixtures" / "discriminative"
 FBC = FbConstants(variant="sed")
@@ -151,11 +151,12 @@ def test_poise_counts_match_matlab(units, engine):
 def test_gemm_poise_backward_matches_backend():
     import torch
     from chmm_lsim.backends import torch_batched as tb
-    from chmm_lsim.discriminative.kernels import backward_poise_gemm
+    from chmm_lsim.learning.discriminative.kernels import backward_poise_gemm
     rng = np.random.default_rng(1)
     for C, M in ((3, 4), (2, 7)):
-        from chmm_lsim.params import ChannelGMM, LSIMParams
-        from chmm_lsim.structure import LSIMStructure
+        from chmm_lsim.emissions.gmm import ChannelGMM
+        from chmm_lsim.models.lsim.params import LSIMParams
+        from chmm_lsim.core.structure import LSIMStructure
         st = LSIMStructure((M,) * C, (1,) * C, (1,) * C)
         A = np.zeros((st.S, st.S))
         for c in range(C):
@@ -177,7 +178,7 @@ def test_gemm_poise_backward_matches_backend():
 
 def test_fused_counts_equal_separate(units):
     from chmm_lsim.discriminative import ObjectiveConfig as OC
-    from chmm_lsim.discriminative.objective import WeightSpec
+    from chmm_lsim.learning.discriminative.objective import WeightSpec
     c, p, Y, *_ = _counts_problem(units)
     p2 = p.copy()
     for g in p2.emissions:

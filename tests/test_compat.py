@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from chmm_lsim.compat import FbConstants
+from chmm_lsim.core.constants import FbConstants
 
 
 def test_python_default_is_raw_poise():

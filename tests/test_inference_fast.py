@@ -22,12 +22,12 @@ import pytest
 sys.path.insert(0, str(Path(__file__).parent / "fixtures"))
 from loader import load_posterior_fixture  # noqa: E402
 
-from chmm_lsim.compat import FbConstants
-from chmm_lsim.inference.fast import forward_backward_fast
-from chmm_lsim.inference.registry import forward_backward, get_inference, register_inference
-from chmm_lsim.inference.sed import forward_backward_sed
-from chmm_lsim.params import LSIMParams
-from chmm_lsim.structure import LSIMStructure
+from chmm_lsim.core.constants import FbConstants
+from chmm_lsim.models.lsim.inference.fast import forward_backward_fast
+from chmm_lsim.models.lsim.inference.registry import forward_backward, get_inference, register_inference
+from chmm_lsim.models.lsim.inference.sed import forward_backward_sed
+from chmm_lsim.models.lsim.params import LSIMParams
+from chmm_lsim.core.structure import LSIMStructure
 
 RTOL, ATOL = 1e-8, 1e-9
 
@@ -147,9 +147,9 @@ def test_validate_all_catches_corrupted_alpha_block_sum(fixtures_dir):
     check instead."""
     from unittest import mock
 
-    import chmm_lsim.inference.fast as fast_module
-    import chmm_lsim.inference.sed as sed_module
-    from chmm_lsim.validate import ValidationError
+    import chmm_lsim.models.lsim.inference.fast as fast_module
+    import chmm_lsim.models.lsim.inference.sed as sed_module
+    from chmm_lsim.core.validate import ValidationError
 
     fx = load_posterior_fixture(fixtures_dir, "c1_minimal__fast")
     structure, params, fbc = _build(fx)
@@ -161,7 +161,7 @@ def test_validate_all_catches_corrupted_alpha_block_sum(fixtures_dir):
         alpha[:, -1] *= 2.0
         return alpha, scale, loglik
 
-    with mock.patch("chmm_lsim.inference.fast._forward_pass", corrupted_forward_pass):
+    with mock.patch("chmm_lsim.models.lsim.inference.fast._forward_pass", corrupted_forward_pass):
         with pytest.raises(ValidationError, match="per-block sums"):
             fast_module.forward_backward_fast(structure, params, fx.trials[0].Y, fbc, validate="all")
 
@@ -177,9 +177,9 @@ def test_validate_all_catches_corrupted_abar_block_sum(fixtures_dir):
     into it."""
     from unittest import mock
 
-    import chmm_lsim.inference.fast as fast_module
-    import chmm_lsim.inference.sed as sed_module
-    from chmm_lsim.validate import ValidationError
+    import chmm_lsim.models.lsim.inference.fast as fast_module
+    import chmm_lsim.models.lsim.inference.sed as sed_module
+    from chmm_lsim.core.validate import ValidationError
 
     fx = load_posterior_fixture(fixtures_dir, "c1_minimal__fast")
     structure, params, fbc = _build(fx)
@@ -191,7 +191,7 @@ def test_validate_all_catches_corrupted_abar_block_sum(fixtures_dir):
         scale[:, 0] *= 2.0  # alpha's own block-sum-1 invariant is untouched by this
         return alpha, scale, loglik
 
-    with mock.patch("chmm_lsim.inference.fast._forward_pass", corrupted_forward_pass):
+    with mock.patch("chmm_lsim.models.lsim.inference.fast._forward_pass", corrupted_forward_pass):
         with pytest.raises(ValidationError, match="abar"):
             fast_module.forward_backward_fast(structure, params, fx.trials[0].Y, fbc, validate="all")
 
@@ -256,7 +256,7 @@ def test_register_inference_duplicate_raises():
             def _dummy2(*args, **kwargs):
                 raise NotImplementedError
     finally:
-        from chmm_lsim.inference.registry import _REGISTRY
+        from chmm_lsim.models.lsim.inference.registry import _REGISTRY
 
         del _REGISTRY["__test_dummy_variant__"]
 
@@ -282,7 +282,7 @@ def test_forward_backward_default_variant_is_raw_poise(fixtures_dir):
     fx = load_posterior_fixture(fixtures_dir, "c3_het_diag__poise")
     structure, params, _ = _build(fx)
     post_default = forward_backward(structure, params, fx.trials[0].Y)  # fb_constants=None
-    from chmm_lsim.inference.poise import forward_backward_poise
+    from chmm_lsim.models.lsim.inference.poise import forward_backward_poise
 
     post_explicit = forward_backward_poise(structure, params, fx.trials[0].Y, FbConstants())
     np.testing.assert_array_equal(post_default.alpha, post_explicit.alpha)

@@ -30,14 +30,17 @@ import pytest
 sys.path.insert(0, str(Path(__file__).parent / "fixtures"))
 from loader import P10A_SCENARIO_IDS, load_p10a_scheduling_fixture  # noqa: E402
 
-import chmm_lsim.em as em  # noqa: E402
-import chmm_lsim.validate as val  # noqa: E402
-from chmm_lsim.compat import FbConstants  # noqa: E402
-from chmm_lsim.em import _welford_batch, _welford_merge, _nanvar_from_welford, compute_global_nanvar, e_step  # noqa: E402
-from chmm_lsim.params import ChannelGMM, LSIMParams  # noqa: E402
-from chmm_lsim.simulate import simulate_lsim  # noqa: E402
-from chmm_lsim.structure import LSIMStructure  # noqa: E402
-from chmm_lsim.validate import ValidationError, validate_observation_list, validate_observations  # noqa: E402
+import chmm_lsim.emissions.gmm as gmm_mod  # noqa: E402
+import chmm_lsim.models.lsim.em as em  # noqa: E402
+import chmm_lsim.core.validate as val  # noqa: E402
+from chmm_lsim.core.constants import FbConstants  # noqa: E402
+from chmm_lsim.emissions.gmm import _welford_batch, _welford_merge, _nanvar_from_welford, compute_global_nanvar  # noqa: E402
+from chmm_lsim.models.lsim.em import e_step  # noqa: E402
+from chmm_lsim.emissions.gmm import ChannelGMM  # noqa: E402
+from chmm_lsim.models.lsim.params import LSIMParams  # noqa: E402
+from chmm_lsim.models.lsim.simulate import simulate_lsim  # noqa: E402
+from chmm_lsim.core.structure import LSIMStructure  # noqa: E402
+from chmm_lsim.core.validate import ValidationError, validate_observation_list, validate_observations  # noqa: E402
 
 CHUNK_SIZES = (1, 3, 17, 64, 1000, None)
 
@@ -200,7 +203,7 @@ def test_global_nanvar_chunks_are_bounded_not_dataset_sized(monkeypatch):
             seen.append(item[2].size)
             yield item
 
-    monkeypatch.setattr(em, "_iter_validated_observation_chunks", spy)
+    monkeypatch.setattr(gmm_mod, "_iter_validated_observation_chunks", spy)
     tracemalloc.start()
     try:
         compute_global_nanvar(structure, Y_trials, max_chunk_observations=budget)
@@ -240,13 +243,13 @@ def test_global_nanvar_never_accumulates_unvalidated_observations(monkeypatch):
     structure = _structure()
     Y_trials = _ragged_trials(structure, n=50, seed=7)
     Y_trials[37][0, 0] = np.inf
-    real = em._welford_batch
+    real = gmm_mod._welford_batch
 
     def spy(weight, value):
         assert np.all(np.isfinite(value)), "an unvalidated (Inf) observation reached the accumulator"
         return real(weight, value)
 
-    monkeypatch.setattr(em, "_welford_batch", spy)
+    monkeypatch.setattr(gmm_mod, "_welford_batch", spy)
     with pytest.raises(ValidationError, match=r"Y_trials\[37\].*Inf"):
         compute_global_nanvar(structure, Y_trials, max_chunk_observations=30)
 
@@ -373,8 +376,8 @@ def _train(structure, params, Y_trials, backend, **extra):
 
 @pytest.mark.parametrize("backend", BACKENDS)
 def test_training_validates_observations_once_and_params_every_update(backend, monkeypatch):
-    import chmm_lsim.inference.fast as fast_mod
-    import chmm_lsim.inference.sed as sed_mod
+    import chmm_lsim.models.lsim.inference.fast as fast_mod
+    import chmm_lsim.models.lsim.inference.sed as sed_mod
 
     spied_modules = [val, sed_mod, fast_mod]
     if backend == "numba":
@@ -385,7 +388,7 @@ def test_training_validates_observations_once_and_params_every_update(backend, m
 
     structure, params, Y_trials = _model_and_data()
     counts = {"chunk_passes": 0, "per_trial": 0, "params_validate": 0}
-    real_chunks = em._iter_validated_observation_chunks
+    real_chunks = gmm_mod._iter_validated_observation_chunks
 
     def chunk_spy(*a, **k):
         counts["chunk_passes"] += 1
@@ -397,7 +400,7 @@ def test_training_validates_observations_once_and_params_every_update(backend, m
             return real(*a, **k)
         return f
 
-    monkeypatch.setattr(em, "_iter_validated_observation_chunks", chunk_spy)
+    monkeypatch.setattr(gmm_mod, "_iter_validated_observation_chunks", chunk_spy)
     for mod in spied_modules:
         monkeypatch.setattr(mod, "validate_observations", per_trial_spy(mod.validate_observations))
     if backend == "torch":
@@ -483,13 +486,13 @@ def test_training_list_replacement_after_validation_is_not_used():
 def test_em_lsim_minibatch_uses_the_same_boundary():
     structure, params, Y_trials = _model_and_data()
     calls = {"n": 0}
-    real = em.compute_global_nanvar
+    real = gmm_mod.compute_global_nanvar
 
     def spy(*a, **k):
         calls["n"] += 1
         return real(*a, **k)
 
-    em_mod = em
+    em_mod = gmm_mod
     orig = em_mod.compute_global_nanvar
     em_mod.compute_global_nanvar = spy
     try:

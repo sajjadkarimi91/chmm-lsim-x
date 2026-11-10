@@ -27,14 +27,15 @@ import pytest
 sys.path.insert(0, str(Path(__file__).parent / "fixtures"))
 from loader import load_p6_fixture  # noqa: E402
 
-from chmm_lsim.compat import FbConstants
+from chmm_lsim.core.constants import FbConstants
 from chmm_lsim.emissions import compute_emissions
-from chmm_lsim.equivalent import build_equivalent_hmm
-from chmm_lsim.inference.sed import forward_backward_sed
-from chmm_lsim.params import ChannelGMM, LSIMParams
-from chmm_lsim.structure import LSIMStructure
-from chmm_lsim.validate import ValidationError
-from chmm_lsim.viterbi import viterbi_exact, viterbi_exact_from_equiv, viterbi_lsim
+from chmm_lsim.models.lsim.equivalent import build_equivalent_hmm
+from chmm_lsim.models.lsim.inference.sed import forward_backward_sed
+from chmm_lsim.emissions.gmm import ChannelGMM
+from chmm_lsim.models.lsim.params import LSIMParams
+from chmm_lsim.core.structure import LSIMStructure
+from chmm_lsim.core.validate import ValidationError
+from chmm_lsim.models.lsim.viterbi import viterbi_exact, viterbi_exact_from_equiv, viterbi_lsim
 
 
 def _small_coupled_model():

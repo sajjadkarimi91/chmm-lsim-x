@@ -1,2 +1,3 @@
-"""Execution backends: how the inference math runs. No algorithm lives here
--- see `chmm_lsim.inference` for that (§2's axis split)."""
+"""Execution backends: how the inference math runs (internal module; import
+from chmm_lsim). No algorithm lives here -- see `chmm_lsim.models.lsim.inference`
+for that. Each backend declares what it supports in `BackendCapabilities`."""

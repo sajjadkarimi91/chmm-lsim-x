@@ -228,3 +228,7 @@ octave-workspace
 
 # benchmark outputs
 benchmarks/*.csv
+
+# patch backups
+*.orig
+*.rej

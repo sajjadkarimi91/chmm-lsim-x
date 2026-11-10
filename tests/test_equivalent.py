@@ -18,19 +18,22 @@ import numpy as np
 import pytest
 
 from chmm_lsim.emissions import compute_emissions
-from chmm_lsim.equivalent import (
+from chmm_lsim.models.lsim.equivalent import (
     MAX_JOINT_MIXTURE_COMPONENTS,
     MAX_JOINT_STATES,
-    EquivalentModelTooLargeError,
     build_equivalent_hmm,
     exact_posterior,
+)
+from chmm_lsim.core.joint_state import (
+    EquivalentModelTooLargeError,
     joint_state_from_index,
     joint_state_index,
     scaled_forward_backward,
 )
-from chmm_lsim.params import ChannelGMM, LSIMParams
-from chmm_lsim.structure import LSIMStructure
-from chmm_lsim.validate import ValidationError
+from chmm_lsim.emissions.gmm import ChannelGMM
+from chmm_lsim.models.lsim.params import LSIMParams
+from chmm_lsim.core.structure import LSIMStructure
+from chmm_lsim.core.validate import ValidationError
 
 
 # --------------------------------------------------------------------------

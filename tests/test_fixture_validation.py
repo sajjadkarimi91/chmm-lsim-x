@@ -1150,9 +1150,9 @@ def test_p10a_coherent_loglik_independently_recomputed_by_python_lsim(fixtures_d
     fx = _load_p10a(fixtures_dir, scenario_id)
 
     from chmm_lsim.backends.base import run_backend
-    from chmm_lsim.compat import FbConstants
-    from chmm_lsim.params import LSIMParams
-    from chmm_lsim.structure import LSIMStructure
+    from chmm_lsim.core.constants import FbConstants
+    from chmm_lsim.models.lsim.params import LSIMParams
+    from chmm_lsim.core.structure import LSIMStructure
 
     structure = LSIMStructure(
         channel_state_num=tuple(fx.channel_num_states.tolist()),
