@@ -39,7 +39,8 @@ except ImportError:  # pragma: no cover
 def _load(name):
     path = FIX / name
     if not path.exists():
-        pytest.skip(f"{path} missing (run tools/matlab/export_disc_fixtures.m)")
+        pytest.fail(f"MATLAB reference {path} is missing; it must be committed "
+                    "(regenerate with tools/matlab/export_disc_fixtures.m in the development repository)")
     return scipy_io.loadmat(str(path), simplify_cells=True)
 
 

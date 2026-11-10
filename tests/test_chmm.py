@@ -57,7 +57,10 @@ RTOL = 1e-10
 
 @pytest.fixture(scope="module")
 def fixtures() -> dict:
-    return scipy.io.loadmat(FIXTURE, simplify_cells=True)
+    if not FIXTURE.exists():
+        pytest.fail(f"MATLAB reference {FIXTURE} is missing; it must be committed "
+                    "(regenerate with tools/matlab/export_chmm_fixtures.m in the development repository)")
+    return scipy.io.loadmat(str(FIXTURE), simplify_cells=True)
 
 
 def _ints(x) -> tuple[int, ...]:
